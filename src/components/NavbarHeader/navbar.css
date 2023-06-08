@@ -1,3 +1,26 @@
-.navbar{
 
+.link_header{
+	color: #555555;
+	text-decoration: none;
+}
+.link_header:hover{
+	color: #111111;
+}
+.btn_header{
+	color: #555555;
+	text-decoration: none;
+	padding: 0;
+	border: none;
+	background-color: rgba(0, 0, 0, 0);
+}
+.btn_header:hover{
+	color: #111111;
+	background-color: rgba(0, 0, 0, 0);
+	border: none;
+}
+
+.btn_header:active{
+	background-color:rgba(0, 0, 0, 0) !important;
+	border: none !important;
+	color:  black !important;
 }

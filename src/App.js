@@ -1,46 +1,62 @@
-import './App.css';
-import { Container, Row, Col, Form } from 'react-bootstrap';
-import ControlledCarousel from './components/Carousel';
-import NavbarMenu from './components/NavbarHeader';
-import NavbarFilter from './components/NavbarFilter';
-import PostPopular from './components/PostPopular';
-import PostNew from './components/PostNew';
-import Footer from './components/Footer';
+import { useState, useEffect } from "react";
+import { Container, Row } from 'react-bootstrap';
+//Стили//
+import './index.css';
+//Функции//
+import Api from "./api"
+import AppCtx from "./context";
 
+// Код от Димы 06.06.2023 //
+import './App.css';
+//импортируем хеадер и футер
+import NavbarMenu from './components/NavbarHeader';
+//импортируем routes
+import RoutesBlog from "./routes";
 
 function App() {
+	const [user, setUser] = useState(localStorage.getItem("travelBlogUser"));
+  const [userId, setUserId] = useState(localStorage.getItem("travelBlogId"));
+  const [token, setToken] = useState(localStorage.getItem("travelBlogToken"));
+  const [api, setApi] = useState(new Api(token)); // создает класс api из конструктора 
+  const [userInfo, setUserInfo] = useState({});
+  const [postsSrv, setPostsSrv] = useState([]); // хранит масси всех постов
 
+ 	useEffect(() => {
+		console.log(`token ${token}`);
+    setApi(new Api(token))
+  }, [token]) 
+
+  // Получение массива со всеми постами//
+   useEffect(() => {
+    if (api.token) {
+      api.getAllPosts()
+        .then(data => {
+          console.log(data);
+          setPostsSrv(data);
+        })
+    }
+  }, [api.token]) 
 	return (
 
-	<Container>
-		<Row className="justify-content-center"><NavbarMenu/><ControlledCarousel/></Row>
-		<Row><NavbarFilter/></Row>
-		<Row>
-			<Form className='d-flex justify-content-center'>
-					<h3 className='mt-5'>Популярное</h3>
-			</Form>
-			<Row className='justify-content-beetwen m-0 p-0 mt-3'>
-					<Col xs={12} md={6} className='justify-content-center mt-2'> <PostPopular img={"popular1.png"}/> </Col>
-					<Col xs={12} md={6} className='justify-content-center mt-2'><PostPopular img={"popular2.png"}/></Col>
-			</Row>
-		</Row>
-		<Form className='d-flex justify-content-center'>
-					<h3 className='mt-5'>Новые публикации</h3>
-			</Form>
-		<Row className='justify-content-beetwen m-0 p-0'>
-		  <Col xs={12} md={4} className='justify-content-center mt-3'><PostNew img={"post1.png"}/> </Col>
-			<Col xs={12} md={4} className='justify-content-center mt-3'><PostNew img={"post2.png"}/></Col>
-			<Col xs={12} md={4} className='justify-content-center mt-3'><PostNew img={"post3.png"}/></Col>
-		</Row>
-		<Row className='justify-content-beetwen m-0 p-0'>
-		  <Col xs={12} md={4} className='justify-content-center mt-3'><PostNew img={"post4.png"}/> </Col>
-			<Col xs={12} md={4} className='justify-content-center mt-3'><PostNew img={"post5.png"}/></Col>
-			<Col xs={12} md={4} className='justify-content-center mt-3'><PostNew img={"post6.png"}/></Col>
-		</Row>
+	<Container className="container_body">
+		<AppCtx.Provider value={{
+			token,
+			setToken,
+			api,
+			setApi,
+			user,
+			setUser,
+			userId,
+			setUserId,
+			userInfo,
+			setUserInfo,
+			postsSrv,
+			setPostsSrv
+		}}>
+			<Row className="justify-content-center"><NavbarMenu/></Row>
+			<Row><RoutesBlog/></Row>
 
-		<Row className='justify-content-center m-0 p-0 mt-3'>
-			<Footer/>
-		</Row>
+		</AppCtx.Provider>
 	</Container>
   );
 }

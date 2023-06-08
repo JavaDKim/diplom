@@ -1,6 +1,5 @@
 import { Card } from 'react-bootstrap';
 import NavbarFooter from '../NavbarFooter';
-
 function Footer() {
 	return (
 		<>
@@ -13,7 +12,6 @@ function Footer() {
 					<Card.Text>Last updated 3 mins ago</Card.Text>
 					<Card.Footer /* style={{ display: "flex", alignItems: "center", height: "150px", left: "0", bottom: "0", width: "100%", position: "absolute", border: "none", backgroundColor: "rgba(0, 0, 0, 0.5)", }} */></Card.Footer>
 				</Card.ImgOverlay>
-				<NavbarFooter />
 			</Card>
 		</>
 	);
