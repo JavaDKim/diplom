@@ -3,6 +3,14 @@ import { Button, Container, Form, Nav, Navbar, NavDropdown, Offcanvas, Row } fro
 import AppCtx from "../../context"
 import "./navbar.css"
 import { useNavigate } from "react-router-dom";
+// икноки из библиотеки mui //
+import PostAddIcon from '@mui/icons-material/PostAdd';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import GroupIcon from '@mui/icons-material/Group';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+
 
 function NavbarMenu() {
 	const {
@@ -17,7 +25,7 @@ function NavbarMenu() {
 			{['lg'].map((expand) => (
 				<Navbar key={expand} bg="opacity-100" expand={expand} className="mb-3">
 					<Container fluid>
-						<Navbar.Brand><Nav.Link className="link_header" href="/" title="на главную">	<span>Лого</span>	</Nav.Link></Navbar.Brand>
+						<Navbar.Brand><Nav.Link className="link_header" href="/" title="на главную">	<img width={200} src={require('../../assets/images/logo.png')} />	</Nav.Link></Navbar.Brand>
 						<Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
 						<Navbar.Offcanvas
 							id={`offcanvasNavbar-expand-${expand}`}
@@ -32,20 +40,26 @@ function NavbarMenu() {
 							<Offcanvas.Body>
 								{!userId &&
 									<Nav className="justify-content-end flex-grow-1 pe-3">
-										<Nav.Link className="link_header" href="/auth" title="авторизация">	<span>Вход</span></Nav.Link>
+										<Nav.Link className="link_header" title="авторизация" onClick={e => { e.preventDefault(); navigate("/auth") }}>	<span>Вход</span></Nav.Link>
 									</Nav>}
 								{userId && <>
 									<Nav className="justify-content-end flex-grow-1 pe-3">
-										<Nav.Link className="link_header" href="/posts" title="посты пользователей">	<span>Посты</span></Nav.Link>
-										<Nav.Link className="link_header" href="/" title="пользователи">	<span>Блогеры</span></Nav.Link>
-										<Nav.Link className="link_header" href="/" title="избранное">	<span>Избранное</span></Nav.Link>
+										<Nav.Link className="link_header" title="добавить пост" onClick={e => { e.preventDefault(); navigate("/post/add") }}>	<PostAddIcon style={{ color: "Grey" }} /> Добавить</Nav.Link>
+										<Nav.Link className="link_header" title="посты пользователей" onClick={e => { e.preventDefault(); navigate("/posts") }}>	<DynamicFeedIcon style={{ color: "Grey" }} /> Посты</Nav.Link>
+										{/* <Nav.Link className="link_header" href="/" title="пользователи">	<GroupIcon style={{ color: "Grey" }} /> Блогеры</Nav.Link> */}
+										<Nav.Link className="link_header" title="избранное" onClick={e => { e.preventDefault(); navigate("/post/edit") }}>	<FavoriteIcon style={{ color: "Grey" }} /> Избранное</Nav.Link>
+
 										<NavDropdown
-											title="Профиль"
+											title={<span><GroupIcon style={{ color: "Grey" }} /> Профиль</span>}
 											id={`offcanvasNavbarDropdown-expand-${expand}`}
 										>
-											<NavDropdown.Item className="link_header" href="/profile" title="мой профиль">
-												<span>Обо мне</span>
+											<NavDropdown.Item className="link_header" title="настройки" onClick={e => { e.preventDefault(); navigate("/setting") }}>
+												<ManageAccountsIcon style={{ color: "Grey" }} /> Настройки
 											</NavDropdown.Item>
+											<NavDropdown.Divider />
+
+											<NavDropdown.Item className="link_header" title="мой профиль" onClick={e => { e.preventDefault(); navigate("/profile") }}>
+												<ManageAccountsIcon style={{ color: "Grey" }} /> Обо мне </NavDropdown.Item>
 											<NavDropdown.Divider />
 											<NavDropdown.Item>
 												<Button className="btn_header" title="Выход" onClick={(e) => {
@@ -57,7 +71,7 @@ function NavbarMenu() {
 													localStorage.removeItem("travelBlogToken");
 													localStorage.removeItem("travelBlogId");
 													navigate("/")
-												}}> Выход</Button>
+												}}><ExitToAppIcon style={{ color: "Grey" }} /> Выход</Button>
 											</NavDropdown.Item>
 										</NavDropdown>
 									</Nav>
@@ -65,7 +79,7 @@ function NavbarMenu() {
 										<Form.Control
 											size="sm"
 											type="search"
-											placeholder="Search"
+											placeholder="поиск"
 											className="me-2"
 											aria-label="Search"
 										/>

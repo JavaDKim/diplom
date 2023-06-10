@@ -12,7 +12,8 @@ function Auth() {
 		api,
 		user,
 		setUser,
-		setUserId
+		setUserId,
+		setPostsSrvAll
 	} = useContext(AppCtx);
 	//навигация по путям 
 	const navigate = useNavigate()
@@ -33,6 +34,10 @@ function Auth() {
 	}
 	//это функция выхода или отмены
 	const regOrSignExit = () => {
+		localStorage.remove("travelPostsAll")
+		localStorage.remove("travelBlogUser")
+		localStorage.remove("travelBlogToken");
+		localStorage.remove("travelBlogId");
 		navigate("/")
 		clearForm()
 	}
@@ -98,6 +103,7 @@ function Auth() {
 			localStorage.setItem("travelBlogUser", fetchAuth.data.name)
 			localStorage.setItem("travelBlogToken", fetchAuth.token);
 			localStorage.setItem("travelBlogId", fetchAuth.data._id);
+			setPostsSrvAll(false)
 			setUser(fetchAuth.data.name)
 			clearForm();
 			navigate("/posts")

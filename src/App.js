@@ -1,3 +1,5 @@
+
+
 import { useState, useEffect } from "react";
 import { Container, Row } from 'react-bootstrap';
 //Стили//
@@ -20,22 +22,33 @@ function App() {
   const [api, setApi] = useState(new Api(token)); // создает класс api из конструктора 
   const [userInfo, setUserInfo] = useState({});
   const [postsSrv, setPostsSrv] = useState([]); // хранит масси всех постов
+	const [postsSrvAll, setPostsSrvAll] = useState(JSON.parse(localStorage.getItem("travelPostsAll"))); // показывать все посты или только с тегом "DiplomLk12"
 
  	useEffect(() => {
-		console.log(`token ${token}`);
     setApi(new Api(token))
   }, [token]) 
+useEffect(() => {
+	if (postsSrvAll) {
+		localStorage.setItem("travelPostsAll",JSON.stringify(true))
+	}
+	else{
+		localStorage.setItem("travelPostsAll",JSON.stringify(false))
+	}
+}, [postsSrvAll]);
 
   // Получение массива со всеми постами//
    useEffect(() => {
     if (api.token) {
       api.getAllPosts()
         .then(data => {
-          console.log(data);
-          setPostsSrv(data);
+					if (postsSrvAll) {
+						setPostsSrv(data);						
+					}else{
+						setPostsSrv(data.filter(el=>el.tags.includes("DiplomLk12")));
+					}
         })
     }
-  }, [api.token]) 
+  }, [api.token, postsSrvAll]) 
 	return (
 
 	<Container className="container_body">
@@ -51,7 +64,9 @@ function App() {
 			userInfo,
 			setUserInfo,
 			postsSrv,
-			setPostsSrv
+			setPostsSrv,
+			postsSrvAll,
+			setPostsSrvAll
 		}}>
 			<Row className="justify-content-center"><NavbarMenu/></Row>
 			<Row><RoutesBlog/></Row>

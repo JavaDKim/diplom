@@ -10,6 +10,21 @@ align-items: center;
 }
 .contain_Page_Posts{
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: repeat(4, 1fr);
 	gap: 10px;
+}
+@media screen and (max-width: 768px)  {
+	.contain_Page_Posts{
+		grid-template-columns: repeat(1, 1fr);
+	}
+}
+@media screen and (min-width: 769px) and (max-width: 999px)  {
+	.contain_Page_Posts{
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+@media screen and (min-width: 1000px) and (max-width: 1200px)  {
+	.contain_Page_Posts{
+		grid-template-columns: repeat(3, 1fr);
+	}
 }

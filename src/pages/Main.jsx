@@ -12,8 +12,8 @@ import Header from '../components/Header';
 function Main() {
 	return <>
 		<Row>
-			<Row><Header /></Row>
-			<Row><NavbarFilter /></Row>
+			<Row className='d-flex justify-content-center m-0 p-0' ><Header /></Row>
+			<Row className='d-flex justify-content-center m-0 p-0 mt-2'><NavbarFilter /></Row>
 			<Form className='d-flex justify-content-center'>
 				<h3 className='mt-5'>Популярное</h3>
 			</Form>
