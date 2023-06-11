@@ -98,6 +98,11 @@ class Api {
 					headers: this.setHeaders()
 			}).then(res => res.json())
 	}
+	getProfileId(id) {
+		return fetch(`${this.path}/users/${id}`, {
+				headers: this.setHeaders(false,false)
+		}).then(res => res.json())
+}
 
 	//Изменение данных о пользователе (Если передан updImg - изменение автатара, если не передан - изменение всего пользователя)//
 	updProfile(body, updImg = false) {

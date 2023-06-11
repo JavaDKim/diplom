@@ -20,7 +20,7 @@ const CardPost = ({ elPost }) => {
 	return (
 		<>
 			<Card >
-				<Card.Header style={{ fontSize: "12px" }} className='d-flex justify-content-between'><span>{user}</span><span>{(elPost.updated_at).slice(0, 10)}</span></Card.Header>
+				<Card.Header style={{ fontSize: "12px" }} className='d-flex justify-content-between'><span>{elPost.author.name}</span><span>{(elPost.updated_at).slice(0, 10)}</span></Card.Header>
 				<Card.Img variant="top" className='mt-3' src={elPost.image} />
 				<Card.Body>
 					<Card.Title style={{ fontSize: "16px" }}>{elPost.title}</Card.Title>

@@ -22,11 +22,13 @@ function App() {
   const [api, setApi] = useState(new Api(token)); // создает класс api из конструктора 
   const [userInfo, setUserInfo] = useState({});
   const [postsSrv, setPostsSrv] = useState([]); // хранит масси всех постов
+	const [myPostsSrv, setMyPostsSrv] = useState([]); // хранит массиво только из постов принадлежащи авторизованному пользователю]
 	const [postsSrvAll, setPostsSrvAll] = useState(JSON.parse(localStorage.getItem("travelPostsAll"))); // показывать все посты или только с тегом "DiplomLk12"
 
  	useEffect(() => {
     setApi(new Api(token))
   }, [token]) 
+// записываем настройки показывать все посты или только с тегом "DiplomLk12"
 useEffect(() => {
 	if (postsSrvAll) {
 		localStorage.setItem("travelPostsAll",JSON.stringify(true))
@@ -46,7 +48,8 @@ useEffect(() => {
 					}else{
 						setPostsSrv(data.filter(el=>el.tags.includes("DiplomLk12")));
 					}
-        })
+        console.log(data);
+				})
     }
   }, [api.token, postsSrvAll]) 
 	return (
@@ -66,7 +69,9 @@ useEffect(() => {
 			postsSrv,
 			setPostsSrv,
 			postsSrvAll,
-			setPostsSrvAll
+			setPostsSrvAll,
+			myPostsSrv,
+			setMyPostsSrv
 		}}>
 			<Row className="justify-content-center"><NavbarMenu/></Row>
 			<Row><RoutesBlog/></Row>

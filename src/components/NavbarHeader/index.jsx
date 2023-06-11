@@ -58,7 +58,7 @@ function NavbarMenu() {
 											</NavDropdown.Item>
 											<NavDropdown.Divider />
 
-											<NavDropdown.Item className="link_header" title="мой профиль" onClick={e => { e.preventDefault(); navigate("/profile") }}>
+											<NavDropdown.Item className="link_header" title="мой профиль" onClick={e => { e.preventDefault(); navigate(`/profile/${userId}`) }}>
 												<ManageAccountsIcon style={{ color: "Grey" }} /> Обо мне </NavDropdown.Item>
 											<NavDropdown.Divider />
 											<NavDropdown.Item>

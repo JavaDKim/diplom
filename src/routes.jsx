@@ -22,7 +22,7 @@ const RoutesBlog = () => {
 				<Route path="/post/:postId" element={<CurrentPost />} />
 				<Route path="/post/add" element={<AddPost />} />
 				<Route path="/post/edit" element={<EditPost />} />
-				<Route path="/profile" element={<Profile />} />
+				<Route path="/profile/:id" element={<Profile />} />
 				<Route path="/setting" element={<Setting />} />
 				<Route path="/auth" element={<Auth />} />
 				<Route path="/contacts" element={<Contacts />} />
