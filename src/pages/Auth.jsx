@@ -13,7 +13,8 @@ function Auth() {
 		user,
 		setUser,
 		setUserId,
-		setPostsSrvAll
+		setPostsSrvAll,
+		setUserInfoObj
 	} = useContext(AppCtx);
 	//навигация по путям 
 	const navigate = useNavigate()
@@ -38,7 +39,9 @@ function Auth() {
 		localStorage.remove("travelBlogUser")
 		localStorage.remove("travelBlogToken");
 		localStorage.remove("travelBlogId");
+		localStorage.remove("travelBlogUserInfo");
 		navigate("/")
+		setUserInfoObj({})
 		clearForm()
 	}
 	// Изменяем state чтобы отобразить блок с регистрацией или входом
@@ -63,6 +66,7 @@ function Auth() {
 		if (user) {
 			setToken(localStorage.getItem("travelBlogToken"));
 			setUserId(localStorage.getItem("travelBlogId"));
+			setUserInfoObj(JSON.parse(localStorage.getItem("travelBlogUserInfo")))
 		}
 		else {
 			setToken("");
@@ -103,8 +107,10 @@ function Auth() {
 			localStorage.setItem("travelBlogUser", fetchAuth.data.name)
 			localStorage.setItem("travelBlogToken", fetchAuth.token);
 			localStorage.setItem("travelBlogId", fetchAuth.data._id);
+			localStorage.setItem("travelBlogUserInfo", JSON.stringify(fetchAuth.data))
 			setPostsSrvAll(false)
 			setUser(fetchAuth.data.name)
+			setUserId(fetchAuth.data._id)
 			clearForm();
 			navigate("/posts")
 		} else {

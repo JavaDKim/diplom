@@ -1,5 +1,3 @@
-
-
 import { useState, useEffect } from "react";
 import { Container, Row } from 'react-bootstrap';
 //Стили//
@@ -14,13 +12,17 @@ import './App.css';
 import NavbarMenu from './components/NavbarHeader';
 //импортируем routes
 import RoutesBlog from "./routes";
+import allCountry from "./country.js"; 
 
 function App() {
 	const [user, setUser] = useState(localStorage.getItem("travelBlogUser"));
   const [userId, setUserId] = useState(localStorage.getItem("travelBlogId"));
   const [token, setToken] = useState(localStorage.getItem("travelBlogToken"));
   const [api, setApi] = useState(new Api(token)); // создает класс api из конструктора 
-  const [userInfo, setUserInfo] = useState({});
+/* 	const [apiCountry, setApiCountry] = useState(new CountryApi()); // создает класс api из конструктора для БД стран*/
+	const [country, setCountry] =useState(allCountry);
+	const [elPost, setElPost] = useState({}); // стайт для текущего поста используется в добавлении и редатировании
+	const [userInfoObj, setUserInfoObj] =useState({});
   const [postsSrv, setPostsSrv] = useState([]); // хранит масси всех постов
 	const [myPostsSrv, setMyPostsSrv] = useState([]); // хранит массиво только из постов принадлежащи авторизованному пользователю]
 	const [postsSrvAll, setPostsSrvAll] = useState(JSON.parse(localStorage.getItem("travelPostsAll"))); // показывать все посты или только с тегом "DiplomLk12"
@@ -50,7 +52,12 @@ useEffect(() => {
 					}
         console.log(data);
 				})
-    }
+				/* apiCountry.getAllCountry()
+        .then(data => {
+					setCountry(data);						
+        console.log(data);
+				}) */
+			}
   }, [api.token, postsSrvAll]) 
 	return (
 
@@ -59,13 +66,14 @@ useEffect(() => {
 			token,
 			setToken,
 			api,
-			setApi,
-			user,
+			country,
 			setUser,
 			userId,
 			setUserId,
-			userInfo,
-			setUserInfo,
+			userInfoObj,
+			setUserInfoObj,
+			elPost, 
+			setElPost,
 			postsSrv,
 			setPostsSrv,
 			postsSrvAll,

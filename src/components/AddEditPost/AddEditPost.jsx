@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Button, Card, Col, Form, Row } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
-import ReadMoreIcon from '@mui/icons-material/ReadMore';
+import { Button, Card, Col, Dropdown, Form, Image, Row } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import PublicIcon from '@mui/icons-material/Public';
 import AppCtx from "../../context"
-
+import VertCard from '../CardPost/VertCard';
+import SaveAsIcon from '@mui/icons-material/SaveAs';
+import CancelIcon from '@mui/icons-material/Cancel';
 
 const AddEditPost = ({ postObj }) => {
 	// если пришел пустой объект то добавление и константе AoE присваиваем true//
@@ -22,8 +24,12 @@ const AddEditPost = ({ postObj }) => {
 	const {
 		api,
 		user,
-		setPostsSrv
+		setPostsSrv,
+		country,
 	} = useContext(AppCtx);
+	const [filterCountry, SetFilterCountry] = useState(country);
+
+
 
 	//	Обновляем теги //
 	const updTag = (val) => {
@@ -62,10 +68,8 @@ const AddEditPost = ({ postObj }) => {
 
 		if (AorE) {
 			console.log("Добавляем");
-			console.log(body);
 			api.addPost(body)
 				.then(data => {
-					console.log(data)
 					if (!data.err && !data.error) {
 						setPostsSrv(prev => [data, ...prev]);
 						clearForm();
@@ -74,6 +78,7 @@ const AddEditPost = ({ postObj }) => {
 				})
 		} else {
 			console.log("Редактируем");
+
 		}
 
 	}
@@ -92,6 +97,35 @@ const AddEditPost = ({ postObj }) => {
 			setTags(postObj.tags)
 		}
 	}, [postObj]);
+	let date = new Date();
+	const [objPost, setObjPost] = useState({})
+	useEffect(() => {
+		if (!AorE) {
+			setObjPost(
+				{
+					author: postObj.author,
+					title,
+					image,
+					text,
+					tags,
+					updated_at: postObj.updated_at,
+					likes: postObj.likes,
+					comments: postObj.comments
+				})
+		} else {
+			setObjPost(
+				{
+					author: JSON.parse(localStorage.getItem("travelBlogUserInfo")),
+					title,
+					image,
+					text,
+					tags,
+					updated_at: String(String(date.getMonth() + 1).padStart(2, '0') + '.' + date.getDate()).padStart(2, '0') + '.' + date.getFullYear(),
+					likes: 10,
+					comments: 2
+				})
+		}
+	}, [title, image, text, tags]);
 
 	useEffect(() => {
 		if (testImg.proportion) {
@@ -102,6 +136,12 @@ const AddEditPost = ({ postObj }) => {
 		}
 	}, [testImg]);
 
+	const changeCountry = (inpEl) => {
+		SetFilterCountry(country.filter(e => e.name.includes(inpEl)))
+	}
+	const selectCountry = (selEl) => {
+		setTags(old => [...old, selEl.name])
+	}
 
 	return (
 		<>
@@ -139,57 +179,72 @@ const AddEditPost = ({ postObj }) => {
 				</Row>
 				{/* строка с 2мя столбцами в правом отображение результата а в левом дополнительные поля для заполнения */}
 				<Row className="d-md-flex mt-3 m-0">
-					<Col sm={6} className="d-flex mt-3 justify-content-start">
+					<Col xs={12} md={6} className="d-flex mt-3 justify-content-start">
 						{/* Работа стегами */}
 						<Form.Group className="my-3">
-							<Form.Label htmlFor="tags">Добавляем теги, после написания тега нажмите пробел</Form.Label>
+							<Form.Label style={{ fontSize: "14px", marginTop: "10px" }} htmlFor="#country">Добавьте тег, после написания тега нажмите пробел, выберите страну для записывания тега о стране путешествия</Form.Label>
+							<Dropdown id='country'>
+								<Dropdown.Toggle size="sm" variant="outline-success" id="dropdown-basic">
+									<PublicIcon /> Выберите страну
+								</Dropdown.Toggle>
+								<Dropdown.Menu style={{ overflowY: "scroll", height: "200px" }}>
+									<Form.Control type='text' placeholder="Поиск.." onChange={e => { e.preventDefault(); changeCountry(e.currentTarget.value) }} />
+									{filterCountry.map((e) => {
+										return <Dropdown.Item key={e.id} style={{ fontSize: "12px" }}
+											onClick={(el) => selectCountry(e)}>{e.name}</Dropdown.Item>
+									})}
+								</Dropdown.Menu>
+							</Dropdown>
+
+							<Form.Label style={{ fontSize: "14px", marginTop: "10px" }} htmlFor="tags">Введите произвольный тег:</Form.Label>
 							<Form.Control
+								size='sm'
 								type="text"
 								id="tags"
 								value={tag}
+								placeholder='Введите тег и нажмите пробел'
 								onChange={(e) => updTag(e.target.value)}
 							/>
 							{tags.length > 0 && <Form.Text>
 								{tags.map(t => <span
-									className={`d-inline-block lh-1 ${t !== "DipomLk12" ? "bg-info" : "bg-secondary"} text-light p-2 mt-2 me-2 rounded-1 `}
+									className={`d-inline-block  p-2 mt-2 me-2 rounded-1 `}
 									key={t}
 									onClick={() => delTag(t)}
 									style={{
 										cursor: "pointer",
+										backgroundColor: t === "DiplomLk12" ? "silver" : "MediumAquamarine"
 									}}
 								>{t}</span>)}
 							</Form.Text>}
 						</Form.Group>
 					</Col>
-					<Col sm={6} className="d-flex mt-3 justify-content-end">
+					<Col xs={12} md={6} className="d-flex mt-3 justify-content-center justify-content-md-end">
+						<Image hidden={true} src={image}
+							onError={() => setTestImg({})} // если ошибка и картинка не прогрузилась то устанавливаем в state  пустой объект
+							onLoad={(e) => setTestImg( // если прогрузилась картинка то устанавливаем в state объект с ключами ширины, высоты и соответствия пропорции
+								{
+									"width": e.currentTarget.width,
+									"height": e.currentTarget.height,
+									//записываем в объект теста картинки true или false в зависимости от правильности пропорции
+									"proportion": (e.currentTarget.width / e.currentTarget.height).toFixed(2) >= 1.5 && (e.currentTarget.width / e.currentTarget.height).toFixed(2) <= 1.6
+								})} />
 						<Card style={{ width: '350px' }}>
-							<Card.Img variant="top" className='mt-3' src={image}
-								onError={() => setTestImg({})} // если ошибка и картинка не прогрузилась то устанавливаем в state  пустой объект
-								onLoad={(e) => setTestImg( // если прогрузилась картинка то устанавливаем в state объект с ключами ширины, высоты и соответствия пропорции
-									{
-										"width": e.currentTarget.width,
-										"height": e.currentTarget.height,
-										//записываем в объект теста картинки true или false в зависимости от правильности пропорции
-										"proportion": (e.currentTarget.width / e.currentTarget.height).toFixed(2) >= 1.5 && (e.currentTarget.width / e.currentTarget.height).toFixed(2) <= 1.6
-									}
-								)} />
+							{/* это блок картинку которая скрыта но она является тестом для проверки изображения, т.к. после загрузки возвращает нам размеры */}
 							<Card.Body>
-								<Card.Title>{title}</Card.Title>
-								<Card.Text >
-									{text.slice(0, 30)} <Link style={{ textDecoration: "none", color: "grey" }} to=""><ReadMoreIcon /></Link>
-								</Card.Text>
-								{text.trim().length > 0 && // если есть текст то появляется кнопка перейти
-									<Button size='sm' variant="outline-warning">перейти</Button>}
+								{/* это заглушка поверх карточки чтобы не нажимались внутри кнопки и прочие ссылки */}
+								<div style={{ width: "100%", height: "100%", top: "0", left: "0", cursor: "not-allowed", position: "absolute", zIndex: "10" }}></div >
+								<VertCard elPost={objPost} />
 							</Card.Body>
 						</Card>
+
 					</Col>
 				</Row>
 				<Row className="d-md-flex mt-3 m-0" style={{ width: "100%" }}>
 					<Col xs={6} className="d-flex mt-3 justify-content-start">
 					</Col>
 					<Col xs={6} className="d-flex mt-3 justify-content-end">
-						<Button size="sm" variant='outline-danger' style={{ marginRight: "10px" }}>Отмена</Button>
-						<Button type='submit' size="sm" disabled={testImg.proportion ? false : true} variant='outline-success'  >Сохранить</Button>
+						<Button size="sm" variant='outline-danger' style={{ marginRight: "10px" }}><CancelIcon style={{ marginBottom: "2px", fontSize: "18px" }} /> Отмена</Button>
+						<Button type='submit' size="sm" disabled={testImg.proportion ? false : true} variant='outline-success'  ><SaveAsIcon style={{ marginBottom: "2px", fontSize: "18px" }} /> Сохранить</Button>
 					</Col>
 				</Row>
 			</Form >

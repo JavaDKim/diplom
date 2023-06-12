@@ -27,7 +27,6 @@ const ModalUserEdit = ({ setEdit, name, setName, about, setAbout, avatar, setAva
 				about: newAbout,
 				avatar: newAvatar
 			}
-			console.log(body);
 			if (newName !== name || newAbout !== about) {
 				delete body.avatar
 				api.updProfile(body).then(data => {

@@ -51,8 +51,9 @@
 .closeEdit{
 width: 100%;
 color: crimson;
-display: flex;
-justify-content: end;
+position: relative;
+left: 260px;
+top: 0px;
 margin-bottom: 10px;
 cursor: pointer;
 }

@@ -1,9 +1,15 @@
 import { Container } from "react-bootstrap";
-import AddEditPostCopy from "../components/AddEditPost/AddEditPostCopy";
+import AddEditPost from "../components/AddEditPost/AddEditPost";
+import { useContext } from "react";
+import AppCtx from "../context"
 
 function EditPost() {
+	const {
+		elPost,
+	} = useContext(AppCtx);
+
 	return <Container>
-		<AddEditPostCopy postObj={{ title: "мой пост", image: "https://kulturologia.ru/files/u18214/russia1.jpg", text: "описание поста", tags: [] }} />
+		<AddEditPost postObj={elPost} />
 	</Container>
 }
 

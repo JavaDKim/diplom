@@ -7,14 +7,14 @@ const Setting = () => {
 		setPostsSrvAll,
 		postsSrvAll
 	} = useContext(AppCtx);
-	console.log(postsSrvAll);
 	return (
 		<Row>
 			<Form>
+				<h4 style={{ marginBottom: "15px" }}>Настройки пользователя</h4>
 				<Form.Check
 					className="mb-3"// prettier-ignore
 					type="switch"
-					label={`Показывать все посты включая и тег "DiplomLk12"`}
+					label={`Отображать все посты включая и тег "DiplomLk12"`}
 					checked={postsSrvAll}
 					onChange={e => e.preventDefault()}
 					onClick={e => {
