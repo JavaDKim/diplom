@@ -8,9 +8,9 @@ import CurrentPost from "./pages/CurrentPost"
 import Profile from "./pages/Profile"
 import AddPost from "./pages/AddPost"
 import Auth from "./pages/Auth"
-import Contacts from "./pages/Contacts"
 import EditPost from "./pages/EditPost"
 import Setting from "./pages/Setting"
+import Favorites from "./pages/Favorites"
 
 
 const RoutesBlog = () => {
@@ -25,7 +25,7 @@ const RoutesBlog = () => {
 				<Route path="/profile/:id" element={<Profile />} />
 				<Route path="/setting" element={<Setting />} />
 				<Route path="/auth" element={<Auth />} />
-				<Route path="/contacts" element={<Contacts />} />
+				<Route path="/favorites" element={<Favorites />} />
 			</Routes>
 		</main >
 	);

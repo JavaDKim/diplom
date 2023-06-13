@@ -1,21 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Card, Col } from 'react-bootstrap';
 import "./style.css"
 import { useNavigate } from 'react-router-dom';
 import { useContext } from "react";
 import ReadMoreIcon from '@mui/icons-material/ReadMore';
+import CommentIcon from '@mui/icons-material/Comment';
 import AppCtx from "../../context"
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
-import CommentIcon from '@mui/icons-material/Comment';
+
+import Likes from '../Likes/likes';
 
 const VertCard = ({ elPost }) => {
 	const navigate = useNavigate()
 	const {
 		setToken,
 		api,
-		user,
+		userId,
 		setUser,
 		setUserId
 	} = useContext(AppCtx);
@@ -27,6 +28,7 @@ const VertCard = ({ elPost }) => {
 		e.preventDefault()
 		navigate(`/post/${elPost._id}`)
 	}
+
 	return (
 		<>
 			<Card >
@@ -47,12 +49,14 @@ const VertCard = ({ elPost }) => {
 				</Card.Body>
 				<Card.Footer className='d-flex justify-content-between'>
 					<div>
-						<span style={{ fontSize: "14px", fontWeight: "550", width: "auto", color: "grey" }}><FavoriteIcon style={{ fontSize: "24px", marginBottom: "3px", color: "crimson" }} /> {elPost.likes?.length}</span>
-						<span style={{ fontSize: "14px", fontWeight: "550", width: "auto", color: "grey", marginLeft: "15px" }}><CommentIcon style={{ fontSize: "24px", marginBottom: "3px", color: "Teal" }} /> {elPost.comments?.length}</span>
+						<Likes elPost={elPost} userId={userId} />
+						<span style={{ fontSize: "14px", fontWeight: "550", width: "auto", color: "grey", marginLeft: "15px" }} onClick={goUserPost}>
+							<CommentIcon style={{ fontSize: "24px", marginBottom: "3px", color: "Teal", cursor: "pointer" }} /> {elPost.comments?.length}
+						</span>
 					</div>
 					<span><ShareIcon style={{ color: "grey" }} /></span>
 				</Card.Footer>
-			</Card>
+			</Card >
 		</>
 	);
 }
