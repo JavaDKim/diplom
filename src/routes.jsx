@@ -11,7 +11,7 @@ import Auth from "./pages/Auth"
 import EditPost from "./pages/EditPost"
 import Setting from "./pages/Setting"
 import Favorites from "./pages/Favorites"
-
+import Search from "./pages/Search"
 
 const RoutesBlog = () => {
 	return (
@@ -26,6 +26,7 @@ const RoutesBlog = () => {
 				<Route path="/setting" element={<Setting />} />
 				<Route path="/auth" element={<Auth />} />
 				<Route path="/favorites" element={<Favorites />} />
+				<Route path="/search" element={<Search />} />
 			</Routes>
 		</main >
 	);

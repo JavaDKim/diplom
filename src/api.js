@@ -31,6 +31,8 @@ class Api {
 			}).then(res => res.json())
 	}
 
+	
+
 	//Создание нового поста//
 	addPost(body) {
 			return fetch(`${this.path}/v2/group-12/posts`, {

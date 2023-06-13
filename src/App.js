@@ -24,6 +24,7 @@ function App() {
 	const [elPost, setElPost] = useState({}); // стайт для текущего поста используется в добавлении и редатировании
 	const [userInfoObj, setUserInfoObj] =useState(JSON.parse(localStorage.getItem("travelBlogUserInfo"))); // хранит информации о пользователе]
   const [postsSrv, setPostsSrv] = useState([]); // хранит масси всех постов
+	const [textSearch, setTextSearch] = useState("")
 	const [myPostsSrv, setMyPostsSrv] = useState([]); // хранит массиво только из постов принадлежащи авторизованному пользователю]
 	const [postsSrvAll, setPostsSrvAll] = useState(JSON.parse(localStorage.getItem("travelPostsAll"))); // показывать все посты или только с тегом "DiplomLk12"
 	
@@ -73,7 +74,9 @@ function App() {
 			postsSrvAll,
 			setPostsSrvAll,
 			myPostsSrv,
-			setMyPostsSrv
+			setMyPostsSrv,
+			textSearch, 
+			setTextSearch
 		}}>
 			<Row className="justify-content-center"><NavbarMenu/></Row>
 			<Row><RoutesBlog/></Row>

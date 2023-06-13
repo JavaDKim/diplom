@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Button, Container, Form, Nav, Navbar, NavDropdown, Offcanvas, Row } from 'react-bootstrap';
 import AppCtx from "../../context"
 import "./navbar.css"
@@ -10,14 +10,18 @@ import GroupIcon from '@mui/icons-material/Group';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 
 function NavbarMenu() {
 	const {
 		setUser,
 		userId,
 		setUserId,
-		setToken
+		setToken,
+		postsSrv,
+		setPostsSrv,
+		textSearch,
+		setTextSearch
 	} = useContext(AppCtx);
 	const navigate = useNavigate()
 	const exit = (e) => {
@@ -36,6 +40,12 @@ function NavbarMenu() {
 	const postsFavor = (e) => {
 		e.preventDefault()
 		navigate("/favorites")
+	}
+
+
+	const search = (e) => {
+		e.preventDefault()
+		navigate("/search")
 	}
 
 	return (
@@ -84,14 +94,21 @@ function NavbarMenu() {
 											</NavDropdown.Item>
 										</NavDropdown>
 									</Nav>
-									<Form size="sm" className="pt-1">
+									<Form size="sm" className="frmSearch">
 										<Form.Control
+											style={{ height: "25px" }}
+											className="w-175"
 											size="sm"
-											type="search"
+											type="text"
+											value={textSearch || ""}
 											placeholder="поиск"
-											className="me-2"
 											aria-label="Search"
+											onChange={(e) => { setTextSearch(e.currentTarget.value) }}
 										/>
+										<Button className="btnSearch" onClick={search}>
+											<SearchRoundedIcon style={{ fontSize: "20px" }} />
+										</Button>
+
 									</Form>
 								</>}
 							</Offcanvas.Body>
