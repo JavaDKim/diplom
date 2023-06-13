@@ -35,11 +35,6 @@ function Auth() {
 	}
 	//это функция выхода или отмены
 	const regOrSignExit = () => {
-		localStorage.remove("travelPostsAll")
-		localStorage.remove("travelBlogUser")
-		localStorage.remove("travelBlogToken");
-		localStorage.remove("travelBlogId");
-		localStorage.remove("travelBlogUserInfo");
 		navigate("/")
 		setUserInfoObj({})
 		clearForm()
@@ -108,6 +103,7 @@ function Auth() {
 			localStorage.setItem("travelBlogToken", fetchAuth.token);
 			localStorage.setItem("travelBlogId", fetchAuth.data._id);
 			localStorage.setItem("travelBlogUserInfo", JSON.stringify(fetchAuth.data))
+			localStorage.setItem("travelPostsAll", JSON.stringify(false))
 			setPostsSrvAll(false)
 			setUser(fetchAuth.data.name)
 			setUserId(fetchAuth.data._id)

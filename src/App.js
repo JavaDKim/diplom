@@ -22,7 +22,7 @@ function App() {
 /* 	const [apiCountry, setApiCountry] = useState(new CountryApi()); // создает класс api из конструктора для БД стран*/
 	const [country, setCountry] =useState(allCountry);
 	const [elPost, setElPost] = useState({}); // стайт для текущего поста используется в добавлении и редатировании
-	const [userInfoObj, setUserInfoObj] =useState({});
+	const [userInfoObj, setUserInfoObj] =useState({}); // хранит информации о пользователе]
   const [postsSrv, setPostsSrv] = useState([]); // хранит масси всех постов
 	const [myPostsSrv, setMyPostsSrv] = useState([]); // хранит массиво только из постов принадлежащи авторизованному пользователю]
 	const [postsSrvAll, setPostsSrvAll] = useState(JSON.parse(localStorage.getItem("travelPostsAll"))); // показывать все посты или только с тегом "DiplomLk12"

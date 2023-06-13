@@ -78,7 +78,18 @@ const AddEditPost = ({ postObj }) => {
 				})
 		} else {
 			console.log("Редактируем");
+			api.updSinglePost(postObj?._id, body)
+				.then(data => {
+					if (!data.err && !data.error) {
 
+						setPostsSrv(prev => prev.map(e => {
+							if (e?._id === data?._id) { return data } else return e
+						}
+						));
+					}
+				})
+			clearForm();
+			navigate(`/posts`)
 		}
 
 	}

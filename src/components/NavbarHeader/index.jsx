@@ -20,6 +20,19 @@ function NavbarMenu() {
 		setToken
 	} = useContext(AppCtx);
 	const navigate = useNavigate()
+	const exit = (e) => {
+		e.preventDefault()
+		setUser("")
+		setUserId("")
+		setToken("")
+		localStorage.removeItem("travelPostsAll");
+		localStorage.removeItem("travelBlogUser");
+		localStorage.removeItem("travelBlogToken");
+		localStorage.removeItem("travelBlogId");
+		localStorage.removeItem("travelBlogUserInfo");
+		navigate("/")
+	}
+
 	return (
 		<Row className='navbar'>
 			{['lg'].map((expand) => (
@@ -62,16 +75,7 @@ function NavbarMenu() {
 												<ManageAccountsIcon style={{ color: "Grey" }} /> Обо мне </NavDropdown.Item>
 											<NavDropdown.Divider />
 											<NavDropdown.Item>
-												<Button className="btn_header" title="Выход" onClick={(e) => {
-													e.preventDefault()
-													setUser("")
-													setUserId("")
-													setToken("")
-													localStorage.removeItem("travelBlogUser")
-													localStorage.removeItem("travelBlogToken");
-													localStorage.removeItem("travelBlogId");
-													navigate("/")
-												}}><ExitToAppIcon style={{ color: "Grey" }} /> Выход</Button>
+												<Button className="btn_header" title="Выход" onClick={exit}><ExitToAppIcon style={{ color: "Grey" }} /> Выход</Button>
 											</NavDropdown.Item>
 										</NavDropdown>
 									</Nav>
