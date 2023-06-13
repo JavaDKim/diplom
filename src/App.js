@@ -22,44 +22,38 @@ function App() {
 /* 	const [apiCountry, setApiCountry] = useState(new CountryApi()); // создает класс api из конструктора для БД стран*/
 	const [country, setCountry] =useState(allCountry);
 	const [elPost, setElPost] = useState({}); // стайт для текущего поста используется в добавлении и редатировании
-	const [userInfoObj, setUserInfoObj] =useState({}); // хранит информации о пользователе]
+	const [userInfoObj, setUserInfoObj] =useState(JSON.parse(localStorage.getItem("travelBlogUserInfo"))); // хранит информации о пользователе]
   const [postsSrv, setPostsSrv] = useState([]); // хранит масси всех постов
 	const [myPostsSrv, setMyPostsSrv] = useState([]); // хранит массиво только из постов принадлежащи авторизованному пользователю]
 	const [postsSrvAll, setPostsSrvAll] = useState(JSON.parse(localStorage.getItem("travelPostsAll"))); // показывать все посты или только с тегом "DiplomLk12"
+	
 
- 	useEffect(() => {
+	useEffect(() => {
     setApi(new Api(token))
   }, [token]) 
 // записываем настройки показывать все посты или только с тегом "DiplomLk12"
-useEffect(() => {
-	if (postsSrvAll) {
-		localStorage.setItem("travelPostsAll",JSON.stringify(true))
-	}
-	else{
-		localStorage.setItem("travelPostsAll",JSON.stringify(false))
-	}
-}, [postsSrvAll]);
 
   // Получение массива со всеми постами//
    useEffect(() => {
     if (api.token) {
       api.getAllPosts()
         .then(data => {
-					if (postsSrvAll) {
+					if (postsSrvAll===true) {
 						setPostsSrv(data);						
-					}else{
-						setPostsSrv(data.filter(el=>el.tags.includes("DiplomLk12")));
+						localStorage.setItem("travelPostsAll",JSON.stringify(true))
 					}
-        console.log(data);
+					else{
+						setPostsSrv(data.filter(elx=>elx.tags?.includes("DiplomLk12")));
+						localStorage.setItem("travelPostsAll",JSON.stringify(false))
+					}
+					console.log(data);
 				})
-				/* apiCountry.getAllCountry()
-        .then(data => {
-					setCountry(data);						
-        console.log(data);
-				}) */
+			}
+			else{
+				console.log("нет токена");
 			}
   }, [api.token, postsSrvAll]) 
-	return (
+		return (
 
 	<Container className="container_body">
 		<AppCtx.Provider value={{

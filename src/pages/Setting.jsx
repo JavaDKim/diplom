@@ -16,7 +16,7 @@ const Setting = () => {
 					type="switch"
 					label={`Отображать все посты включая и тег "DiplomLk12"`}
 					checked={postsSrvAll}
-					onChange={e => e.preventDefault()}
+					onChange={e => { }}
 					onClick={e => {
 						if (e.currentTarget.checked) {
 							setPostsSrvAll(true)

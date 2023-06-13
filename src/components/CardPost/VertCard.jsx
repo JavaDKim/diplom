@@ -39,10 +39,10 @@ const VertCard = ({ elPost }) => {
 					<Card.Text>
 						<Card.Img variant="top" className='mt-3' style={{ borderRadius: "0", cursor: "pointer" }} src={elPost.image} alt='изображение' onClick={goUserPost} />
 					</Card.Text>
-					<Card.Title style={{ fontSize: "14px", fontWeight: "550", padding: "0px 19px 0px 19px" }}>{elPost.title}</Card.Title>
+					<Card.Title style={{ fontSize: "14px", fontWeight: "550", padding: "0px 19px 0px 19px" }}>{elPost?.title}</Card.Title>
 					<Card.Text style={{ fontSize: "12px", padding: "5px 19px 5px 19px" }}>
 						{elPost.text?.slice(0, 130)}
-						<Card.Link style={{ textDecoration: "none", color: "DodgerBlue" }} href={`/post/${elPost._id}`}><ReadMoreIcon /> далее</Card.Link>
+						<Card.Link style={{ textDecoration: "none", color: "DodgerBlue" }} href={`/post/${elPost?._id}`}><ReadMoreIcon /> далее</Card.Link>
 					</Card.Text>
 				</Card.Body>
 				<Card.Footer className='d-flex justify-content-between'>

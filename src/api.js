@@ -119,7 +119,7 @@ class Api {
 	//========//
 
 	addReview(id, body) {
-			return fetch(`${this.path}/products/review/${id}`, {
+			return fetch(`${this.path}/v2/group-12/posts/comments/${id}`, {
 					method: "POST",
 					headers: this.setHeaders(true),
 					body: this.setBody(body)
@@ -127,7 +127,7 @@ class Api {
 	}
 
 	delReview(productId, reviewId) {
-			return fetch(`${this.path}/products/review/${productId}/${reviewId}`, {
+			return fetch(`${this.path}/v2/group-12/posts/comments/${productId}/${reviewId}`, {
 					method: "DELETE",
 					headers: this.setHeaders()
 			}).then(res => res.json())

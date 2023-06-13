@@ -61,7 +61,7 @@ function Auth() {
 		if (user) {
 			setToken(localStorage.getItem("travelBlogToken"));
 			setUserId(localStorage.getItem("travelBlogId"));
-			setUserInfoObj(JSON.parse(localStorage.getItem("travelBlogUserInfo")))
+
 		}
 		else {
 			setToken("");
@@ -103,10 +103,12 @@ function Auth() {
 			localStorage.setItem("travelBlogToken", fetchAuth.token);
 			localStorage.setItem("travelBlogId", fetchAuth.data._id);
 			localStorage.setItem("travelBlogUserInfo", JSON.stringify(fetchAuth.data))
-			localStorage.setItem("travelPostsAll", JSON.stringify(false))
-			setPostsSrvAll(false)
+			localStorage.setItem("travelPostsAll", JSON.stringify(true))
+			setPostsSrvAll(true)
+			setToken(fetchAuth.token);
 			setUser(fetchAuth.data.name)
 			setUserId(fetchAuth.data._id)
+			setUserInfoObj(fetchAuth.data)
 			clearForm();
 			navigate("/posts")
 		} else {

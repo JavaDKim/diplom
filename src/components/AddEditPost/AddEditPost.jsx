@@ -67,7 +67,7 @@ const AddEditPost = ({ postObj }) => {
 		}
 
 		if (AorE) {
-			console.log("Добавляем");
+			/* 			console.log("Добавляем"); */
 			api.addPost(body)
 				.then(data => {
 					if (!data.err && !data.error) {
@@ -77,7 +77,7 @@ const AddEditPost = ({ postObj }) => {
 					}
 				})
 		} else {
-			console.log("Редактируем");
+			/* 			console.log("Редактируем"); */
 			api.updSinglePost(postObj?._id, body)
 				.then(data => {
 					if (!data.err && !data.error) {
@@ -87,19 +87,30 @@ const AddEditPost = ({ postObj }) => {
 						}
 						));
 					}
+					clearForm();
+					navigate(`/post/${data?._id}`)
 				})
-			clearForm();
+		}
+	}
+	// выход
+	const exit = (e) => {
+		e.preventDefault()
+		clearForm();
+		if (AorE) {
 			navigate(`/posts`)
+		} else {
+			navigate(`/post/${postObj?._id}`)
 		}
 
 	}
+
 	const clearForm = () => {
 		setTitle("")
 		setImage("")
 		setText("")
 		setTags([])
 	}
-	//в зависимости от изменния пропса мы исполняем проверку, если это редактирование то заполняем поля из объекта
+	//в зависимости от изменния пропса мы исполняем проверку, если это редактирование то заполняем поля из объекта, 
 	useEffect(() => {
 		if (!AorE) {
 			setTitle(postObj.title)
@@ -110,6 +121,7 @@ const AddEditPost = ({ postObj }) => {
 	}, [postObj]);
 	let date = new Date();
 	const [objPost, setObjPost] = useState({})
+	//в зависимости от изменния стэйтов мы заполняем objPost информацией для передачи а карточку VertCard, которая выводится для примера в странице редактировани
 	useEffect(() => {
 		if (!AorE) {
 			setObjPost(
@@ -254,7 +266,7 @@ const AddEditPost = ({ postObj }) => {
 					<Col xs={6} className="d-flex mt-3 justify-content-start">
 					</Col>
 					<Col xs={6} className="d-flex mt-3 justify-content-end">
-						<Button size="sm" variant='outline-danger' style={{ marginRight: "10px" }}><CancelIcon style={{ marginBottom: "2px", fontSize: "18px" }} /> Отмена</Button>
+						<Button size="sm" variant='outline-danger' style={{ marginRight: "10px" }} onClick={exit}><CancelIcon style={{ marginBottom: "2px", fontSize: "18px" }} /> Отмена</Button>
 						<Button type='submit' size="sm" disabled={testImg.proportion ? false : true} variant='outline-success'  ><SaveAsIcon style={{ marginBottom: "2px", fontSize: "18px" }} /> Сохранить</Button>
 					</Col>
 				</Row>
