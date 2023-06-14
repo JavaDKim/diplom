@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     gap: 8px;
+		position: relative;
 }
 .pagination__item {
     display: flex;
@@ -21,4 +22,9 @@
 .pagination__item.active {
     background-color: #fff;
     color: darkslateblue;
+}
+.sorting{
+	position: absolute;
+	right: 0;
+	cursor: pointer;
 }

@@ -23,14 +23,19 @@ const usePagination = (data, cnt) => {
         setCurrent(nextPage)
     }
 
-    const setDataPerPage = () => {
+    const setDataPerPage = (sort) => {
         // cnt + current
         // 1 => arr[0, 20)
         // 2 => arr[20, 40)
         // 3 => arr[40, 60)
         let start = (current - 1) * cnt;
         let end = start + cnt;
-        return data.slice(start, end);
+				if (sort) {
+					return data.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()).slice(start, end);	
+				}else{
+					return data.sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime()).slice(start, end);	
+				}
+        
     }
 
     return {current, max, step, prev, next, setDataPerPage}

@@ -13,7 +13,7 @@ import NavbarMenu from './components/NavbarHeader';
 //импортируем routes
 import RoutesBlog from "./routes";
 import allCountry from "./country.js"; 
-import usePagination from "./hooks/usePagination";
+
 
 function App() {
 	const [user, setUser] = useState(localStorage.getItem("travelBlogUser"));
@@ -28,7 +28,7 @@ function App() {
 	const [textSearch, setTextSearch] = useState("") // значение поле для поиска
 	const [myPostsSrv, setMyPostsSrv] = useState([]); // хранит массиво только из постов принадлежащи авторизованному пользователю]
 	const [postsSrvAll, setPostsSrvAll] = useState(JSON.parse(localStorage.getItem("travelPostsAll"))); // показывать все посты или только с тегом "DiplomLk12"
-	const paginate = usePagination(postsSrv, 20)
+
 	useEffect(() => {
     setApi(new Api(token))
   }, [token]) 
@@ -53,7 +53,6 @@ function App() {
 			else{
 				console.log("нет токена");
 			}
-			paginate.step(1);
   }, [api.token, postsSrvAll]) 
 		return (
 
@@ -78,7 +77,6 @@ function App() {
 			setMyPostsSrv,
 			textSearch, 
 			setTextSearch,
-			paginate
 		}}>
 			<Row className="justify-content-center"><NavbarMenu/></Row>
 			<Row><RoutesBlog/></Row>

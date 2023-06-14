@@ -1,10 +1,10 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import AppCtx from "../context";
-import { Container } from "react-bootstrap";
+import { Button, Container, Row } from "react-bootstrap";
 import "./style.css"
 import VertCard from "../components/CardPost/VertCard";
 import Pagination from "../components/Pagination";
-import Filter from "../components/Filter";
+import usePagination from "../hooks/usePagination";
 
 function Posts() {
 
@@ -17,17 +17,21 @@ function Posts() {
 		setApi,
 		user,
 		setUserId,
-		paginate
+
 	} = useContext(AppCtx);
-
-
+	const [sort, setSort] = useState(true)
+	let paginate = usePagination(postsSrv, 20)
+	/* 	useEffect(() => {
+			paginate.step(1);
+		}, [paginate]); */
 
 	return (
-		<Container className="contain_Page_Posts">
-			<div style={{ gridColumnEnd: "span 4" }}><Pagination hk={paginate} /></div>
-			{/* <Filter /> */}
-			{paginate.setDataPerPage().map((e) => <VertCard key={e._id} elPost={e} />)}
-			{/* {postsSrv.map((e) => <VertCard key={e._id} elPost={e} />)} */}
+		<Container>
+			<Row className="mb-2"><Pagination hk={paginate} setSort={setSort} /></Row>
+			<Row className="contain_Page_Posts">
+				{paginate.setDataPerPage(sort).map((e) => <VertCard key={e._id} elPost={e} />)}
+				{/* {postsSrv.map((e) => <VertCard key={e._id} elPost={e} />)} */}
+			</Row>
 		</Container>
 	)
 }
