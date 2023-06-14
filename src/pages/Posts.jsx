@@ -1,9 +1,10 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import AppCtx from "../context";
 import { Container } from "react-bootstrap";
 import "./style.css"
 import VertCard from "../components/CardPost/VertCard";
-
+import Pagination from "../components/Pagination";
+import Filter from "../components/Filter";
 
 function Posts() {
 
@@ -15,12 +16,18 @@ function Posts() {
 		api,
 		setApi,
 		user,
-		setUserId
+		setUserId,
+		paginate
 	} = useContext(AppCtx);
+
+
 
 	return (
 		<Container className="contain_Page_Posts">
-			{postsSrv.map((e) => <VertCard key={e._id} elPost={e} />)}
+			<div style={{ gridColumnEnd: "span 4" }}><Pagination hk={paginate} /></div>
+			{/* <Filter /> */}
+			{paginate.setDataPerPage().map((e) => <VertCard key={e._id} elPost={e} />)}
+			{/* {postsSrv.map((e) => <VertCard key={e._id} elPost={e} />)} */}
 		</Container>
 	)
 }

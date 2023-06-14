@@ -11,6 +11,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
+import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 
 function NavbarMenu() {
 	const {
@@ -117,6 +118,7 @@ function NavbarMenu() {
 				</Navbar>
 			))
 			}
+			<Breadcrumbs />
 		</Row >
 	);
 }
