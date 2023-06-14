@@ -31,7 +31,7 @@ function CurrentPost() {
 	const [elPostComments, setElPostComments] = useState([]);
 	const [elPostLikes, setElPostLikes] = useState([]);
 	const [elPostTags, setElPostTags] = useState([]);
-
+	//Срабатывает при изменениии токена а
 	useEffect(() => {
 		api.getSinglePost(postId)
 			.then(data => {
@@ -48,6 +48,8 @@ function CurrentPost() {
 						setTitleCountry(old => old + " " + x.name)
 					}
 				}))
+				/* data.text? */
+
 			})
 	}, [token]);
 
