@@ -78,13 +78,13 @@ const Reviews = () => {
 						</Card>
 						{/* //Вывод все отзывов// */}
 						{elPost.comments?.map(e =>
-							<Card key={e._id} className="text-left mt-2">
+							<Card key={e?._id} className="text-left mt-2">
 								<Card.Header className='d-flex justify-content-between'>
 									<div>
 										<Image width={40} height={40} style={{ borderRadius: "50%", border: "1px solid gray", padding: "0", margin: "0" }} src={e.author.avatar} />
 										<span style={{ marginLeft: "5px" }}>{e.author.name}</span>
 									</div>
-									{userInfoObj._id === e.author._id &&
+									{userInfoObj?._id === e.author?._id &&
 										<div onClick={(el) => deleteComment(e)}>
 											<DeleteRoundedIcon style={{ marginTop: "5px", color: "Maroon" }} />
 										</div>
