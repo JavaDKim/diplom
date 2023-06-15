@@ -77,16 +77,17 @@ function CurrentPost() {
 						</Row>
 					}
 				</Col>
-
-				<Col xs={12} md={6} className="justify-content-center mt-2 text-end">
-					<img
-						src={elPost?.image}
-						alt="Montenegro"
-						className="w-100"
-						style={{ borderRadius: "5px", width: "300px" }}
-					/>
-				</Col>
 			</Row>
+
+			<Row xs={12} md={6} className="justify-content-center my-3 text-end">
+				<img
+					src={elPost?.image}
+					alt="Montenegro"
+					className="w-100"
+					style={{ borderRadius: "5px" }}
+				/>
+			</Row>
+
 
 			<Row className=" mt-2">
 				<Col xs={12}>
