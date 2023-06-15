@@ -64,7 +64,7 @@ function CurrentPost() {
 	const delPost = (e) => {
 		e.preventDefault()
 		api.delSinglePost(postId)
-		setPostsSrv(prev => prev.filter(e => e._id !== postId))
+		setPostsSrv(prev => prev.filter(e => e?._id !== postId))
 		navigate("/posts")
 
 	}
@@ -130,7 +130,7 @@ function CurrentPost() {
 				<Col xs={12} className="d-flex justify-content-start">
 
 					{elPost.tags?.length > 0 &&
-						elPost.tags.map(t => <span
+						elPost.tags?.map(t => <span
 							className={`me-2 rounded-1 `}
 							key={t}
 							onClick={() => { }}
