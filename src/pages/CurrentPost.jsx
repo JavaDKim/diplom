@@ -11,6 +11,8 @@ import AppCtx from "../context"
 import { Button, Col, Container, Row } from "react-bootstrap";
 import Footer from "../components/Footer";
 import Reviews from "../components/Reviews/Reviews";
+import MapApi from "../components/MapApi"
+
 
 
 function CurrentPost() {
@@ -31,6 +33,8 @@ function CurrentPost() {
 	const [elPostComments, setElPostComments] = useState([]);
 	const [elPostLikes, setElPostLikes] = useState([]);
 	const [elPostTags, setElPostTags] = useState([]);
+	const [xСoordinate, SetXСoordinate] = useState(0);
+    const [yСoordinate, SetYСoordinate] = useState(0);
 
 	useEffect(() => {
 		api.getSinglePost(postId)
@@ -45,7 +49,9 @@ function CurrentPost() {
 				setTitleCountry("")
 				data.tags?.map(e => country?.map(x => {
 					if (x.name?.toLowerCase() === e?.toLowerCase()) {
-						setTitleCountry(old => old + " " + x.name)
+						setTitleCountry(old => old + " " + x.name);
+						SetXСoordinate(old => x.north);
+						SetYСoordinate(old => x.east);
 					}
 				}))
 			})
@@ -136,6 +142,7 @@ function CurrentPost() {
 						>{t}</span>)}
 				</Col>
 			</Row>
+			<MapApi titleCountry={titleCountry} xСoordinate={xСoordinate} yСoordinate={yСoordinate} />
 			{/* блок ОТЗЫВОВ */}
 			<Row className="justify-content-center justify-content-md-start mt-2">
 				<Reviews />
