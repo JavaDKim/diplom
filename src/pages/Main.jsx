@@ -7,6 +7,8 @@ import PostNew from '../components/PostNew';
 import NavbarFilter from '../components/NavbarFilter';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import NavbarFooter from '../components/NavbarFooter'
+
 
 
 function Main() {
@@ -36,7 +38,7 @@ function Main() {
 			<Col xs={12} md={4} className='justify-content-center mt-3'><PostNew img={"post6.png"} /></Col>
 		</Row>
 		<Row className='justify-content-center m-0 p-0 mt-3'>
-			<Footer />
+			<NavbarFooter />
 		</Row>
 
 

@@ -9,7 +9,7 @@ import './style.css';
 //Контексты//
 import AppCtx from "../context"
 import { Button, Col, Container, Row } from "react-bootstrap";
-import Footer from "../components/Footer";
+import NavbarFooter from '../components/NavbarFooter'
 import Reviews from "../components/Reviews/Reviews";
 import MapApi from "../components/MapApi"
 
@@ -34,7 +34,7 @@ function CurrentPost() {
 	const [elPostLikes, setElPostLikes] = useState([]);
 	const [elPostTags, setElPostTags] = useState([]);
 	const [xСoordinate, SetXСoordinate] = useState(0);
-    const [yСoordinate, SetYСoordinate] = useState(0);
+	const [yСoordinate, SetYСoordinate] = useState(0);
 
 	useEffect(() => {
 		api.getSinglePost(postId)
@@ -156,7 +156,7 @@ function CurrentPost() {
 				</Col>
 			</Row>
 			<Row className="justify-content-center m-0 p-0 mt-3">
-				<Footer />
+				<NavbarFooter />
 			</Row>
 		</Container >
 	</>
