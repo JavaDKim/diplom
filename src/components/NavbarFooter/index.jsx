@@ -9,6 +9,7 @@ function NavbarFooter() {
 	const { userId } = useContext(AppCtx)
 	return (
 		<>
+			{/* Ирина */}
 			<Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
 				<Container className='footer'>
 					<Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
