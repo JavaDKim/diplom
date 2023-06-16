@@ -5,6 +5,11 @@ import { Container } from "react-bootstrap";
 
 
 const Favorites = () => {
+
+	useEffect(() => {
+		document.title = 'Избранные посты TravelBlog';
+	  }, []);
+
 	const { userId, postsSrv } = useContext(AppCtx)
 	return (
 		<Container className="contain_Page_Posts">

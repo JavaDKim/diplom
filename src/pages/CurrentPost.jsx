@@ -12,7 +12,9 @@ import { Button, Col, Container, Row, Tab, Tabs } from "react-bootstrap";
 import Footer from "../components/Footer";
 import Reviews from "../components/Reviews/Reviews";
 import MapApi from "../components/MapApi"
+
 import { AlignEnd } from "react-bootstrap-icons";
+
 
 
 
@@ -36,6 +38,7 @@ function CurrentPost() {
 	const [elPostTags, setElPostTags] = useState([]);
 	const [xСoordinate, SetXСoordinate] = useState(0);
 	const [yСoordinate, SetYСoordinate] = useState(0);
+
 	const [descriptionCountry, setDescriptionCountry] = useState("");
 
 	useEffect(() => {
@@ -74,7 +77,19 @@ function CurrentPost() {
 		navigate("/posts")
 
 	}
+
+	useEffect(() => {
+		if (elPost?.title) {
+			(document.title = elPost.title)
+		}
+		else {
+			(document.title = "TravelBlog")
+		}
+	}, [elPost]);
+
+
 	return <>
+
 		<Container>
 
 			{/* 			<div className="spacer" style={{ height: "100px" }}></div> */}
@@ -91,6 +106,7 @@ function CurrentPost() {
 							<MapApi titleCountry={titleCountry} xСoordinate={xСoordinate} yСoordinate={yСoordinate} />}
 					</div> */}
 				</Col>
+
 
 				{/* блок ОТЗЫВОВ */}
 				<Col xs={12} md={9} className="justify-content-center my-3 text-end">
@@ -118,6 +134,7 @@ function CurrentPost() {
 				</Col>
 			</Row >
 			<Row className=" mt-2">
+
 				<Col xs={12}>
 					<div>
 						<h4 className="mt-3" style={{}}>
@@ -131,6 +148,7 @@ function CurrentPost() {
 						}
 					</div>
 				</Col>
+
 				<Col xs={12}>
 					<div className="mt-5">
 						<p>{elPost?.text}
@@ -182,7 +200,27 @@ function CurrentPost() {
 			<Row className="justify-content-center m-0 p-0 mt-3">
 				<Footer />
 			</Row>
-		</Container >
+		</Container >}
+
+		{!userId && <Container>
+			<Row xs={12} md={6}>
+			
+	
+		<Auth />
+		</Row>
+		</Container>
+		}
+
+
+
+
+
+
+
+
+
+
+
 	</>
 }
 
