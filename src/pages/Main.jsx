@@ -5,7 +5,6 @@ import AppCtx from "../context";
 import PostPopular from '../components/PostPopular';
 import PostNew from '../components/PostNew';
 import NavbarFilter from '../components/NavbarFilter';
-import Footer from '../components/Footer';
 import Header from '../components/Header';
 import NavbarFooter from '../components/NavbarFooter'
 
@@ -13,11 +12,11 @@ import NavbarFooter from '../components/NavbarFooter'
 
 function Main() {
 
-	
-		useEffect(() => {
-		  document.title = 'Главная страница';
-		}, []);
-	 
+
+	useEffect(() => {
+		document.title = 'Главная страница';
+	}, []);
+
 	return <>
 		<Row>
 			<Row className='d-flex justify-content-center m-0 p-0' ><Header /></Row>
