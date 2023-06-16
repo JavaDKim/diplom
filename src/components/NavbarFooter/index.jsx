@@ -6,21 +6,12 @@ import { useNavigate } from "react-router-dom";
 // икноки из библиотеки mui //
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
-import GroupIcon from '@mui/icons-material/Group';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+
 
 function NavbarMenu() {
 	const {
-		setUser,
 		userId,
-		setUserId,
-		setToken,
-		postsSrv,
-		setPostsSrv,
-		textSearch,
-		setTextSearch
 	} = useContext(AppCtx);
 	const navigate = useNavigate()
 
@@ -54,12 +45,8 @@ function NavbarMenu() {
 									<Nav className="justify-content-end flex-grow-1 pe-3">
 										<Nav.Link className="link_header" title="добавить пост" onClick={e => { e.preventDefault(); navigate("/post/add") }}>	<PostAddIcon style={{ color: "gray" }} /> Добавить</Nav.Link>
 										<Nav.Link className="link_header" title="посты пользователей" onClick={e => { e.preventDefault(); navigate("/posts") }}>	<DynamicFeedIcon style={{ color: "gray" }} /> Посты</Nav.Link>
-										{/* <Nav.Link className="link_header" href="/" title="пользователи">	<GroupIcon style={{ color: "Grey" }} /> Блогеры</Nav.Link> */}
 										<Nav.Link className="link_header" title="избранное" onClick={postsFavor}>	<FavoriteIcon style={{ color: "gray" }} /> Избранное</Nav.Link>
-
-
 									</Nav>
-
 								</>}
 							</Offcanvas.Body>
 						</Navbar.Offcanvas>

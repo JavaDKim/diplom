@@ -33,14 +33,14 @@ function Main() {
 			<h3 className='mt-5'>Новые публикации</h3>
 		</Form>
 		<Row className='justify-content-beetwen m-0 p-0'>
-			<Col xs={12} md={4} className='justify-content-center mt-3'><PostNew img={"post1.png"} /> </Col>
-			<Col xs={12} md={4} className='justify-content-center mt-3'><PostNew img={"post2.png"} /></Col>
-			<Col xs={12} md={4} className='justify-content-center mt-3'><PostNew img={"post3.png"} /></Col>
+			<Col xs={12} md={4} className='justify-content-center mt-3'><PostNew img={"post1.png"} element={1} /> </Col>
+			<Col xs={12} md={4} className='justify-content-center mt-3'><PostNew img={"post2.png"} element={2} /></Col>
+			<Col xs={12} md={4} className='justify-content-center mt-3'><PostNew img={"post3.png"} element={3} /></Col>
 		</Row>
 		<Row className='justify-content-beetwen m-0 p-0'>
-			<Col xs={12} md={4} className='justify-content-center mt-3'><PostNew img={"post4.png"} /> </Col>
-			<Col xs={12} md={4} className='justify-content-center mt-3'><PostNew img={"post5.png"} /></Col>
-			<Col xs={12} md={4} className='justify-content-center mt-3'><PostNew img={"post6.png"} /></Col>
+			<Col xs={12} md={4} className='justify-content-center mt-3'><PostNew img={"post4.png"} element={4} /> </Col>
+			<Col xs={12} md={4} className='justify-content-center mt-3'><PostNew img={"post5.png"} element={5} /></Col>
+			<Col xs={12} md={4} className='justify-content-center mt-3'><PostNew img={"post6.png"} element={6} /></Col>
 		</Row>
 		<Row className='justify-content-center m-0 p-0 mt-3'>
 			<NavbarFooter />
