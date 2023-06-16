@@ -8,6 +8,8 @@ import './style.css';
 
 //Контексты//
 import AppCtx from "../context"
+
+import NavbarFooter from '../components/NavbarFooter'
 import { Button, Col, Container, Row, Tab, Tabs } from "react-bootstrap";
 import Footer from "../components/Footer";
 import Reviews from "../components/Reviews/Reviews";
@@ -39,7 +41,9 @@ function CurrentPost() {
 	const [xСoordinate, SetXСoordinate] = useState(0);
 	const [yСoordinate, SetYСoordinate] = useState(0);
 
+
 	const [descriptionCountry, setDescriptionCountry] = useState("");
+
 
 	useEffect(() => {
 		api.getSinglePost(postId)
@@ -198,7 +202,7 @@ function CurrentPost() {
 				</Col>
 			</Row>
 			<Row className="justify-content-center m-0 p-0 mt-3">
-				<Footer />
+				<NavbarFooter />
 			</Row>
 		</Container >}
 
