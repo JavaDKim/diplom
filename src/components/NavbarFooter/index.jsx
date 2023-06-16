@@ -29,44 +29,43 @@ function NavbarMenu() {
 		navigate("/favorites")
 	}
 	return (
-		<Row className='navbar_footer'>
-			{['lg'].map((expand) => (
-				<Navbar key={expand} bg="opacity-100" expand={expand} className="mb-3">
-					<Container fluid>
-						<Navbar.Brand><Nav.Link className="link_header" href="/" title="на главную">	<img width={100} src={require('../../assets/images/logo.png')} />	</Nav.Link></Navbar.Brand>
-						<Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} style={{ color: "gray" }} />
-						<Navbar.Offcanvas
-							id={`offcanvasNavbar-expand-${expand}`}
-							aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-							placement="end"
-						>
-							<Offcanvas.Header closeButton>
-								<Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-									Меню сайта
-								</Offcanvas.Title>
-							</Offcanvas.Header>
-							<Offcanvas.Body>
-								{!userId &&
-									<Nav className="justify-content-end flex-grow-1 pe-3">
-										<Nav.Link className="link_header" title="авторизация" onClick={e => { e.preventDefault(); navigate("/auth") }}>	<span>Вход</span></Nav.Link>
-									</Nav>}
-								{userId && <>
-									<Nav className="justify-content-end flex-grow-1 pe-3">
-										<Nav.Link className="link_header" title="добавить пост" onClick={e => { e.preventDefault(); navigate("/post/add") }}>	<PostAddIcon style={{ color: "gray" }} /> Добавить</Nav.Link>
-										<Nav.Link className="link_header" title="посты пользователей" onClick={e => { e.preventDefault(); navigate("/posts") }}>	<DynamicFeedIcon style={{ color: "gray" }} /> Посты</Nav.Link>
-										{/* <Nav.Link className="link_header" href="/" title="пользователи">	<GroupIcon style={{ color: "Grey" }} /> Блогеры</Nav.Link> */}
-										<Nav.Link className="link_header" title="избранное" onClick={postsFavor}>	<FavoriteIcon style={{ color: "gray" }} /> Избранное</Nav.Link>
+		<>
+			{/* Ирина */}
+			<Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
+				<Container className='footer'>
+					<Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+					<Navbar.Toggle aria-controls="responsive-navbar-nav" />
+					<Navbar.Collapse id="responsive-navbar-nav">
+						<Nav className="me-auto">
+						</Nav>
+						<Nav>
+							{!userId && <>
+								<Nav.Link>
+									<Link to="/auth" title="авторизация">	<span>ВХОД</span>	</Link>
+								</Nav.Link>
+							</>}
+							{userId && <>
+								<Nav.Link eventKey={2} href="#memes">
+									ГЛАВНАЯ
+								</Nav.Link>
+								<Nav.Link eventKey={3} href="#memes">
+									КАТЕГОРИИ
+								</Nav.Link>
+								<Nav.Link eventKey={4} href="#memes">
+									ПОСТЫ
+								</Nav.Link>
+							</>}
 
 
-									</Nav>
+						</Nav>
 
-								</>}
-							</Offcanvas.Body>
-						</Navbar.Offcanvas>
-					</Container>
-				</Navbar>
+					</>}
+				</Offcanvas.Body>
+			</Navbar.Offcanvas>
+		</Container >
+				</Navbar >
 			))
-			}
+}
 		</Row >
 	);
 }
