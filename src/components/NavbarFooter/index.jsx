@@ -28,9 +28,6 @@ function NavbarMenu() {
 		e.preventDefault()
 		navigate("/favorites")
 	}
-
-
-
 	return (
 		<Row className='navbar_footer'>
 			{['lg'].map((expand) => (
