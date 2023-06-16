@@ -15,8 +15,6 @@ import { Button, Col, Container, Row, Tab, Tabs } from "react-bootstrap";
 import Reviews from "../components/Reviews/Reviews";
 import MapApi from "../components/MapApi"
 
-import { AlignEnd } from "react-bootstrap-icons";
-
 
 
 

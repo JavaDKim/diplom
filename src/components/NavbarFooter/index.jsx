@@ -23,18 +23,6 @@ function NavbarMenu() {
 		setTextSearch
 	} = useContext(AppCtx);
 	const navigate = useNavigate()
-	const exit = (e) => {
-		e.preventDefault()
-		setUser("")
-		setUserId("")
-		setToken("")
-		localStorage.removeItem("travelPostsAll");
-		localStorage.removeItem("travelBlogUser");
-		localStorage.removeItem("travelBlogToken");
-		localStorage.removeItem("travelBlogId");
-		localStorage.removeItem("travelBlogUserInfo");
-		navigate("/")
-	}
 
 	const postsFavor = (e) => {
 		e.preventDefault()
