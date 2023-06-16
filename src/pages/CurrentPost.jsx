@@ -33,9 +33,13 @@ function CurrentPost() {
 	const [elPostComments, setElPostComments] = useState([]);
 	const [elPostLikes, setElPostLikes] = useState([]);
 	const [elPostTags, setElPostTags] = useState([]);
+<<<<<<< HEAD
 	const [xСoordinate, SetXСoordinate] = useState(0);
     const [yСoordinate, SetYСoordinate] = useState(0);
 
+=======
+	//Срабатывает при изменениии токена а
+>>>>>>> new
 	useEffect(() => {
 		api.getSinglePost(postId)
 			.then(data => {
@@ -54,6 +58,8 @@ function CurrentPost() {
 						SetYСoordinate(old => x.east);
 					}
 				}))
+				/* data.text? */
+
 			})
 	}, [token]);
 
