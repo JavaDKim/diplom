@@ -208,10 +208,10 @@ function CurrentPost() {
 
 		{!userId && <Container>
 			<Row xs={12} md={6}>
-			
-	
-		<Auth />
-		</Row>
+
+
+				<Auth />
+			</Row>
 		</Container>
 		}
 
@@ -228,5 +228,5 @@ function CurrentPost() {
 	</>
 }
 
-export default CurrentPost;
+export default NavbarFooter;
 
