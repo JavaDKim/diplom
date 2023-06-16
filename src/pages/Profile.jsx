@@ -16,6 +16,7 @@ import ModalUserEdit from "../components/Modal/ModalUserEdit";
 function Profile() {
 	const { id } = useParams();
 	const navigate = useNavigate()
+
 	const {
 		token,
 		api,

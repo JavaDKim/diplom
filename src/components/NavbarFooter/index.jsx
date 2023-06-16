@@ -11,7 +11,6 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 function NavbarMenu() {
 	const {
 		userId,
-
 	} = useContext(AppCtx);
 	const navigate = useNavigate()
 
@@ -20,9 +19,6 @@ function NavbarMenu() {
 		e.preventDefault()
 		navigate("/favorites")
 	}
-
-
-
 	return (
 		<Row className='navbar_footer'>
 			{['lg'].map((expand) => (
@@ -49,12 +45,8 @@ function NavbarMenu() {
 									<Nav className="justify-content-end flex-grow-1 pe-3">
 										<Nav.Link className="link_header" title="добавить пост" onClick={e => { e.preventDefault(); navigate("/post/add") }}>	<PostAddIcon style={{ color: "gray" }} /> Добавить</Nav.Link>
 										<Nav.Link className="link_header" title="посты пользователей" onClick={e => { e.preventDefault(); navigate("/posts") }}>	<DynamicFeedIcon style={{ color: "gray" }} /> Посты</Nav.Link>
-										{/* <Nav.Link className="link_header" href="/" title="пользователи">	<GroupIcon style={{ color: "Grey" }} /> Блогеры</Nav.Link> */}
 										<Nav.Link className="link_header" title="избранное" onClick={postsFavor}>	<FavoriteIcon style={{ color: "gray" }} /> Избранное</Nav.Link>
-
-
 									</Nav>
-
 								</>}
 							</Offcanvas.Body>
 						</Navbar.Offcanvas>
