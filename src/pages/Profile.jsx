@@ -3,7 +3,6 @@ import { Container, Row, Col, Image, Form, Button, Badge } from "react-bootstrap
 import { useNavigate, useParams } from "react-router-dom";
 import EditIcon from '@mui/icons-material/Edit';
 import AddIcon from '@mui/icons-material/Add';
-import Footer from "../components/Footer";
 
 //Стили//
 import './style.css';
@@ -51,7 +50,7 @@ function Profile() {
 
 	useEffect(() => {
 		document.title = "Профиль " + name;
-	  }, [name]);
+	}, [name]);
 
 	return <>
 		<Container>

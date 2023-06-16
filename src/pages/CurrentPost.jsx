@@ -12,11 +12,8 @@ import Auth from "./Auth"
 
 import NavbarFooter from '../components/NavbarFooter'
 import { Button, Col, Container, Row, Tab, Tabs } from "react-bootstrap";
-import Footer from "../components/Footer";
 import Reviews from "../components/Reviews/Reviews";
 import MapApi from "../components/MapApi"
-
-import { AlignEnd } from "react-bootstrap-icons";
 
 
 
