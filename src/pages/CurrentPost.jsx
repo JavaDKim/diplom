@@ -8,12 +8,9 @@ import './style.css';
 
 //Контексты//
 import AppCtx from "../context"
-<<<<<<< HEAD
 import Auth from "./Auth"
-=======
 
 import NavbarFooter from '../components/NavbarFooter'
->>>>>>> feff9db60bc4cc7f05487db47f816669ba51b317
 import { Button, Col, Container, Row, Tab, Tabs } from "react-bootstrap";
 import Footer from "../components/Footer";
 import Reviews from "../components/Reviews/Reviews";
@@ -148,96 +145,65 @@ function CurrentPost() {
 				</div>
 			</Col>
 
-			< Row>
-				<Col xs={12}>
-					<div className="mt-5">
-						<p>{elPost?.text}
-						</p>
-					</div>
-				</Col>
-			</Row>
+			<Col xs={12}>
+				<div className="mt-5">
+					<p>{elPost?.text}
+					</p>
+				</div>
+			</Col>
+		</Row >
 
-			<Row className="justify-content-beetwen m-0 p-0 mt-3">
-				<Col
-					xs={6}
-					md={6}
-					className="justify-content-center mt-3 p-0 text-start"
-				>
-					<p>{elPost.author?.name}</p>
-				</Col>
-				<Col xs={6} md={6} className="justify-content-center mt-3 p-0 text-end">
-					<span> {elPost.updated_at?.slice(0, 10)}</span>
-				</Col>
+		<Row className="justify-content-beetwen m-0 p-0 mt-3">
+			<Col
+				xs={6}
+				md={6}
+				className="justify-content-center mt-3 p-0 text-start"
+			>
+				<p>{elPost.author?.name}</p>
+			</Col>
+			<Col xs={6} md={6} className="justify-content-center mt-3 p-0 text-end">
+				<span> {elPost.updated_at?.slice(0, 10)}</span>
+			</Col>
 
-			</Row>
+		</Row>
 
-			<Row className="justify-content-center">
-				<Col xs={12} className="d-flex justify-content-start">
-
-					{elPost.tags?.length > 0 &&
-						elPost.tags?.map(t => <span
-							className={`me-2 rounded-1 `}
-							key={t}
-							onClick={() => { }}
-							style={{
-								cursor: "pointer",
-								backgroundColor: t === "DiplomLk12" ? "silver" : "MediumAquamarine",
-								padding: "0 8px 0 8px"
-							}}
-						>{t}</span>)}
-				</Col>
-			</Row>
-			<Row className="justify-content-center justify-content-md-start mt-2">
-				<Reviews />
-			</Row>
-			<Row className="justify-content-center mt-5 mb-5">
-				<Col xs={12} className="d-flex justify-content-center">
-					<Button variant="outline-secondary" onClick={() => navigate("/posts")}>
-						<HomeIcon style={{ fontSize: "20", marginBottom: "5px" }} /> На главную
-					</Button>
-				</Col>
-			</Row>
-			<Row className="justify-content-center m-0 p-0 mt-3">
-				<Footer />
-			</Row>
+		<Row className="justify-content-center">
+			<Col xs={12} className="d-flex justify-content-start">
+				{elPost.tags?.length > 0 &&
+					elPost.tags?.map(t => <span
+						className={`me-2 rounded-1 `}
+						key={t}
+						onClick={() => { }}
+						style={{
+							cursor: "pointer",
+							backgroundColor: t === "DiplomLk12" ? "silver" : "MediumAquamarine",
+							padding: "0 8px 0 8px"
+						}}
+					>{t}</span>)}
+			</Col>
+		</Row>
+		<Row className="justify-content-center justify-content-md-start mt-2">
+			<Reviews />
+		</Row>
+		<Row className="justify-content-center mt-5 mb-5">
+			<Col xs={12} className="d-flex justify-content-center">
+				<Button variant="outline-secondary" onClick={() => navigate("/posts")}>
+					<HomeIcon style={{ fontSize: "20", marginBottom: "5px" }} /> На главную
+				</Button>
+			</Col>
+		</Row>
+		<Row className="justify-content-center m-0 p-0 mt-3">
+			<NavbarFooter />
+		</Row>
 	</Container >}
 
-		{elPost.tags?.length > 0 &&
-			elPost.tags?.map(t => <span
-				className={`me-2 rounded-1 `}
-				key={t}
-				onClick={() => { }}
-				style={{
-					cursor: "pointer",
-					backgroundColor: t === "DiplomLk12" ? "silver" : "MediumAquamarine",
-					padding: "0 8px 0 8px"
-				}}
-			>{t}</span>)}
-	</Col >
-			</Row >
-			<Row className="justify-content-center justify-content-md-start mt-2">
-				<Reviews />
-			</Row>
-			<Row className="justify-content-center mt-5 mb-5">
-				<Col xs={12} className="d-flex justify-content-center">
-					<Button variant="outline-secondary" onClick={() => navigate("/posts")}>
-						<HomeIcon style={{ fontSize: "20", marginBottom: "5px" }} /> На главную
-					</Button>
-				</Col>
-			</Row>
-			<Row className="justify-content-center m-0 p-0 mt-3">
-				<NavbarFooter />
-			</Row>
-		</Container >}
->>>>>>> feff9db60bc4cc7f05487db47f816669ba51b317
-
-{
-	!userId && <Container>
-		<Row xs={12} md={6}>
-			<Auth />
-		</Row>
-	</Container>
-}
+		{
+			!userId && <Container>
+				<Row xs={12} md={6}>
+					<Auth />
+				</Row>
+			</Container>
+		}
 	</>
 }
 
