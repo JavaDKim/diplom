@@ -2,9 +2,11 @@ import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 
 
 const MapApi = (titleCountry ) => {
-
+    console.log(titleCountry.xСoordinate);
     {
         return (<>
+
+{titleCountry.xСoordinate !== 0 &&
 
             <div className="justify-content-around m-0 p-0 mt-3 row">
                 <YMaps>
@@ -24,6 +26,13 @@ const MapApi = (titleCountry ) => {
 
                 </YMaps>
             </div>
+    }
+
+    {titleCountry === 0 && 
+    <div className="justify-content-around m-0 p-0 mt-3 row">
+        </div>
+
+    }
             <br />
         </>);
     }

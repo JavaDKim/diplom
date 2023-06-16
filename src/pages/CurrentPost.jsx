@@ -12,6 +12,7 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import Footer from "../components/Footer";
 import Reviews from "../components/Reviews/Reviews";
 import MapApi from "../components/MapApi"
+import Auth from "./Auth";
 
 
 
@@ -70,22 +71,19 @@ function CurrentPost() {
 	}
 
 	useEffect(() => {
-		if (elPost?.title){
-		(document.title = elPost.title)
-	}
-	else {
-		(document.title = "TravelBlog")
-	}
+		if (elPost?.title) {
+			(document.title = elPost.title)
+		}
+		else {
+			(document.title = "TravelBlog")
+		}
 	}, [elPost]);
 
 
 	return <>
 
 
-
-
-
-		<Container>
+		{userId && <Container>
 			{/* 			<div className="spacer" style={{ height: "100px" }}></div> */}
 
 			<Row className="justify-content-beetwen m-0 p-0 mt-3">
@@ -105,8 +103,8 @@ function CurrentPost() {
 							{elPost?.title}
 						</h4>
 						{userId === elPost.author?._id &&
-							<Button size="sm" variant="outline-danger" style={{ marginRight: "10px" }}onClick={delPost}><DeleteForeverIcon style={{ fontSize: "16px" }} />Удалить пост</Button>
-							
+							<Button size="sm" variant="outline-danger" style={{ marginRight: "10px" }} onClick={delPost}><DeleteForeverIcon style={{ fontSize: "16px" }} />Удалить пост</Button>
+
 						}
 						{userId === elPost.author?._id &&
 							<Button size="sm" variant="outline-secondary" onClick={(e) => { e.preventDefault(); navigate("/post/edit") }}><EditIcon style={{ fontSize: "16px" }} /> Редактировать</Button>
@@ -180,7 +178,21 @@ function CurrentPost() {
 			<Row className="justify-content-center m-0 p-0 mt-3">
 				<Footer />
 			</Row>
-		</Container >
+		</Container >}
+
+		{!userId && <Container>
+			<Row xs={12} md={6}>
+			
+	
+		<Auth />
+		</Row>
+		</Container>
+		}
+
+
+
+
+
 
 
 
