@@ -14,6 +14,7 @@ import { Button, Col, Container, Row, Tab, Tabs } from "react-bootstrap";
 import Footer from "../components/Footer";
 import Reviews from "../components/Reviews/Reviews";
 import MapApi from "../components/MapApi"
+import Auth from "./Auth"
 
 import { AlignEnd } from "react-bootstrap-icons";
 
@@ -204,14 +205,14 @@ function CurrentPost() {
 			<Row className="justify-content-center m-0 p-0 mt-3">
 				<NavbarFooter />
 			</Row>
-		</Container >}
+		</Container >
 
 		{!userId && <Container>
 			<Row xs={12} md={6}>
-			
-	
-		<Auth />
-		</Row>
+
+
+				<Auth />
+			</Row>
 		</Container>
 		}
 
