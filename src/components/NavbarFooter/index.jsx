@@ -1,48 +1,89 @@
-import { Nav, Container, Navbar } from 'react-bootstrap';
-import { useContext } from "react";
-import AppCtx from "../../context"
 import "./style.css"
-import { Link } from 'react-router-dom';
+import { useContext, useEffect, useState } from "react";
+import { Button, Container, Form, Nav, Navbar, NavDropdown, Offcanvas, Row } from 'react-bootstrap';
+import AppCtx from "../../context"
+import { useNavigate } from "react-router-dom";
+// икноки из библиотеки mui //
+import PostAddIcon from '@mui/icons-material/PostAdd';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import GroupIcon from '@mui/icons-material/Group';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+
+function NavbarMenu() {
+	const {
+		setUser,
+		userId,
+		setUserId,
+		setToken,
+		postsSrv,
+		setPostsSrv,
+		textSearch,
+		setTextSearch
+	} = useContext(AppCtx);
+	const navigate = useNavigate()
+	const exit = (e) => {
+		e.preventDefault()
+		setUser("")
+		setUserId("")
+		setToken("")
+		localStorage.removeItem("travelPostsAll");
+		localStorage.removeItem("travelBlogUser");
+		localStorage.removeItem("travelBlogToken");
+		localStorage.removeItem("travelBlogId");
+		localStorage.removeItem("travelBlogUserInfo");
+		navigate("/")
+	}
+
+	const postsFavor = (e) => {
+		e.preventDefault()
+		navigate("/favorites")
+	}
 
 
-function NavbarFooter() {
-	const { userId } = useContext(AppCtx)
+
 	return (
-		<>
-			<Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
-				<Container className='footer'>
-					<Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-					<Navbar.Toggle aria-controls="responsive-navbar-nav" />
-					<Navbar.Collapse id="responsive-navbar-nav">
-						<Nav className="me-auto">
-						</Nav>
-						<Nav>
-							{!userId && <>
-								<Nav.Link>
-									<Link to="/auth" title="авторизация">	<span>ВХОД</span>	</Link>
-								</Nav.Link>
-							</>}
-							{userId && <>
-								<Nav.Link eventKey={2} href="#memes">
-									ГЛАВНАЯ
-								</Nav.Link>
-								<Nav.Link eventKey={3} href="#memes">
-									КАТЕГОРИИ
-								</Nav.Link>
-								<Nav.Link eventKey={4} href="#memes">
-									ПОСТЫ
-								</Nav.Link>
-							</>}
+		<Row className='navbar_footer'>
+			{['lg'].map((expand) => (
+				<Navbar key={expand} bg="opacity-100" expand={expand} className="mb-3">
+					<Container fluid>
+						<Navbar.Brand><Nav.Link className="link_header" href="/" title="на главную">	<img width={100} src={require('../../assets/images/logo.png')} />	</Nav.Link></Navbar.Brand>
+						<Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} style={{ color: "gray" }} />
+						<Navbar.Offcanvas
+							id={`offcanvasNavbar-expand-${expand}`}
+							aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+							placement="end"
+						>
+							<Offcanvas.Header closeButton>
+								<Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+									Меню сайта
+								</Offcanvas.Title>
+							</Offcanvas.Header>
+							<Offcanvas.Body>
+								{!userId &&
+									<Nav className="justify-content-end flex-grow-1 pe-3">
+										<Nav.Link className="link_header" title="авторизация" onClick={e => { e.preventDefault(); navigate("/auth") }}>	<span>Вход</span></Nav.Link>
+									</Nav>}
+								{userId && <>
+									<Nav className="justify-content-end flex-grow-1 pe-3">
+										<Nav.Link className="link_header" title="добавить пост" onClick={e => { e.preventDefault(); navigate("/post/add") }}>	<PostAddIcon style={{ color: "gray" }} /> Добавить</Nav.Link>
+										<Nav.Link className="link_header" title="посты пользователей" onClick={e => { e.preventDefault(); navigate("/posts") }}>	<DynamicFeedIcon style={{ color: "gray" }} /> Посты</Nav.Link>
+										{/* <Nav.Link className="link_header" href="/" title="пользователи">	<GroupIcon style={{ color: "Grey" }} /> Блогеры</Nav.Link> */}
+										<Nav.Link className="link_header" title="избранное" onClick={postsFavor}>	<FavoriteIcon style={{ color: "gray" }} /> Избранное</Nav.Link>
 
-							<Nav.Link eventKey={5} href="#assa">
-								КОНТАКТЫ
-							</Nav.Link>
-						</Nav>
-					</Navbar.Collapse>
-				</Container>
-			</Navbar>
-		</>
+
+									</Nav>
+
+								</>}
+							</Offcanvas.Body>
+						</Navbar.Offcanvas>
+					</Container>
+				</Navbar>
+			))
+			}
+		</Row >
 	);
 }
 
-export default NavbarFooter;
+export default NavbarMenu;
