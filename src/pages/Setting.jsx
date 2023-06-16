@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Form, Row } from 'react-bootstrap';
 import AppCtx from "../context.js"
 
@@ -7,6 +7,12 @@ const Setting = () => {
 		setPostsSrvAll,
 		postsSrvAll
 	} = useContext(AppCtx);
+
+	useEffect(() => {
+		document.title = "Настройки пользователя";
+	  }, []);
+
+
 	return (
 		<Row>
 			<Form>

@@ -28,9 +28,6 @@ const AddEditPost = ({ postObj }) => {
 		country,
 	} = useContext(AppCtx);
 	const [filterCountry, SetFilterCountry] = useState(country);
-
-
-
 	//	Обновляем теги //
 	const updTag = (val) => {
 		// Привести к общему регистру
@@ -162,8 +159,22 @@ const AddEditPost = ({ postObj }) => {
 	const changeCountry = (inpEl) => {
 		SetFilterCountry(country.filter(e => e.name.includes(inpEl)))
 	}
+
+	// вызывается по клику на выпадающем списке стран
 	const selectCountry = (selEl) => {
-		setTags(old => [...old, selEl.name])
+		const emptyInTags = (tags.filter(e => e?.toLowerCase().includes(selEl.name.toLowerCase())).length === 0);
+		let emptyInTagsInCountry = true
+		tags.forEach(elemTag => country.forEach(elemCountry => {
+			if (elemTag?.toLowerCase() === elemCountry.name?.toLowerCase()) {
+				emptyInTagsInCountry = false
+			}
+		}))
+		if (emptyInTags && emptyInTagsInCountry) {
+			setTags(old => [...old, selEl.name])
+		}
+		else {
+			alert("Cтрана существует в тегах, выбрать можно только одну страну")
+		}
 	}
 
 	return (

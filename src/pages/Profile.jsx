@@ -49,6 +49,10 @@ function Profile() {
 		}
 	}, [avatar]);
 
+	useEffect(() => {
+		document.title = "Профиль " + name;
+	  }, [name]);
+
 	return <>
 		<Container>
 			<Row>

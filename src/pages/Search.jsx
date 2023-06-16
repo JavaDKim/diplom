@@ -1,9 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import AppCtx from "../context"
 import VertCard from '../components/CardPost/VertCard';
 
 const Search = () => {
+
+	useEffect(() => {
+		document.title = "Поиск по сайту TravelBlog";
+	  }, []);
+
 	const {
 		postsSrv,
 		textSearch,

@@ -57,11 +57,12 @@ function NavbarMenu() {
 						<Navbar.Brand><Nav.Link className="link_header" href="/" title="на главную">	<img width={200} src={require('../../assets/images/logo.png')} />	</Nav.Link></Navbar.Brand>
 						<Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
 						<Navbar.Offcanvas
+
 							id={`offcanvasNavbar-expand-${expand}`}
 							aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
 							placement="end"
 						>
-							<Offcanvas.Header closeButton>
+							<Offcanvas.Header closeButton >
 								<Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
 									Меню сайта
 								</Offcanvas.Title>

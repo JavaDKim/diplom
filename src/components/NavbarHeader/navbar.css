@@ -47,3 +47,7 @@
 	background-color: rgba(0, 0, 0, 0) !important;
 	color: blue !important;
 }
+.navbar-toggler-icon{
+	height: 1em !important;
+	width: 1em !important;
+}

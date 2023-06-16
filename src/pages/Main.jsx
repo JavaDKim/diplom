@@ -1,5 +1,5 @@
 import { Row, Col, Form } from 'react-bootstrap';
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import AppCtx from "../context";
 
 import PostPopular from '../components/PostPopular';
@@ -12,6 +12,12 @@ import NavbarFooter from '../components/NavbarFooter'
 
 
 function Main() {
+
+	
+		useEffect(() => {
+		  document.title = 'Главная страница';
+		}, []);
+	 
 	return <>
 		<Row>
 			<Row className='d-flex justify-content-center m-0 p-0' ><Header /></Row>
