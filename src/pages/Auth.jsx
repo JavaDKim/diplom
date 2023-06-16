@@ -52,6 +52,10 @@ function Auth() {
 		}
 	}
 
+	useEffect(() => {
+		document.title = 'Авторизация TravelBlog';
+	  }, []);
+
 	// возвращаем стиль color: если пароли совпадают и кримсон если нет
 	const testAccess = {
 		color: pwd === testPwd ? "forestgreen" : "crimson"
