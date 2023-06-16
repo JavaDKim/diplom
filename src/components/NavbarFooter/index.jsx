@@ -66,7 +66,7 @@ function NavbarMenu() {
 				</Navbar >
 			))
 }
-		</Row >
+		</Row > greger
 	);
 }
 
