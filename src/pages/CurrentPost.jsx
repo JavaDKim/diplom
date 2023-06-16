@@ -205,5 +205,5 @@ function CurrentPost() {
 	</>
 }
 
-export default NavbarFooter;
+export default CurrentPost;
 

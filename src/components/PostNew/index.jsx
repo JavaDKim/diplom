@@ -10,10 +10,27 @@ function PostNew({ img, element }) {
 		if (element === 1) {
 			navigate(`/post/648cb35be0bf2c519befb097`)
 		}
+		if (element === 2) {
+			navigate(`/post/648cc77be0bf2c519befba87`)
+		}
 		if (element === 3) {
 			navigate(`/post/648b1f00e0bf2c519bee6cb5`)
 		}
-
+		if (element === 4) {
+			navigate(`/post/648cd1f8e0bf2c519bf02b66`)
+		}
+		if (element === 5) {
+			navigate(`/post/648cd38be0bf2c519bf03238`)
+		}
+		if (element === 6) {
+			navigate(`/post/648cd450e0bf2c519bf032c1`)
+		}
+		if (element === 7) {
+			navigate(`/post/648cd555e0bf2c519bf0341a`)
+		}
+		if (element === 8) {
+			navigate(`/post/648cd450e0bf2c519bf032c1`)
+		}
 	}
 	return (
 		<>

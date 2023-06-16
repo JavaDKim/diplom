@@ -36,7 +36,7 @@ function Profile() {
 					setMyPostsSrv(postsSrv?.filter(el => el.author._id.includes(id)))
 				}
 			})
-	}, [postsSrv]);
+	}, [postsSrv, id, api, setMyPostsSrv]);
 
 	const [name, setName] = useState("")
 	const [about, setAbout] = useState("")
