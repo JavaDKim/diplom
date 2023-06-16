@@ -1,6 +1,7 @@
 import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 
 
+
 const MapApi = (titleCountry) => {
 
 	{
@@ -20,10 +21,10 @@ const MapApi = (titleCountry) => {
 					<Placemark defaultGeometry={[titleCountry.xСoordinate, titleCountry.yСoordinate]} />
 				</Map>
 
-
 			</YMaps>
 		</>);
 	}
+
 
 };
 
