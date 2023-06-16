@@ -34,7 +34,7 @@ function CurrentPost() {
 	const [elPostLikes, setElPostLikes] = useState([]);
 	const [elPostTags, setElPostTags] = useState([]);
 	const [xСoordinate, SetXСoordinate] = useState(0);
-    const [yСoordinate, SetYСoordinate] = useState(0);
+	const [yСoordinate, SetYСoordinate] = useState(0);
 
 	useEffect(() => {
 		api.getSinglePost(postId)
@@ -68,7 +68,23 @@ function CurrentPost() {
 		navigate("/posts")
 
 	}
+
+	useEffect(() => {
+		if (elPost?.title){
+		(document.title = elPost.title)
+	}
+	else {
+		(document.title = "TravelBlog")
+	}
+	}, [elPost]);
+
+
 	return <>
+
+
+
+
+
 		<Container>
 			{/* 			<div className="spacer" style={{ height: "100px" }}></div> */}
 
@@ -78,12 +94,27 @@ function CurrentPost() {
 					{userId === elPost.author?._id &&
 						<Row className="mt-2 mb-2" style={{ width: "200px" }}>
 							<Col>
-								<Button size="sm" variant="outline-secondary" onClick={(e) => { e.preventDefault(); navigate("/post/edit") }}><EditIcon style={{ fontSize: "16px" }} /> Редактировать</Button>
+
 							</Col>
 						</Row>
 					}
 				</Col>
+				<Col xs={12}>
+					<div>
+						<h4 className="mt-3" style={{}}>
+							{elPost?.title}
+						</h4>
+						{userId === elPost.author?._id &&
+							<Button size="sm" variant="outline-danger" style={{ marginRight: "10px" }}onClick={delPost}><DeleteForeverIcon style={{ fontSize: "16px" }} />Удалить пост</Button>
+							
+						}
+						{userId === elPost.author?._id &&
+							<Button size="sm" variant="outline-secondary" onClick={(e) => { e.preventDefault(); navigate("/post/edit") }}><EditIcon style={{ fontSize: "16px" }} /> Редактировать</Button>
+						}
+					</div>
+				</Col>
 			</Row>
+
 
 			<Row xs={12} md={6} className="justify-content-center my-3 text-end">
 				<img
@@ -96,16 +127,7 @@ function CurrentPost() {
 
 
 			<Row className=" mt-2">
-				<Col xs={12}>
-					<div>
-						<h4 className="mt-3" style={{}}>
-							{elPost?.title}
-						</h4>
-						{userId === elPost.author?._id &&
-							<Button size="sm" variant="outline-danger" onClick={delPost}><DeleteForeverIcon style={{ fontSize: "16px" }} />Удалить пост</Button>
-						}
-					</div>
-				</Col>
+
 				<Col xs={12}>
 					<div className="mt-5">
 						<p>{elPost?.text}
@@ -159,6 +181,12 @@ function CurrentPost() {
 				<Footer />
 			</Row>
 		</Container >
+
+
+
+
+
+
 	</>
 }
 

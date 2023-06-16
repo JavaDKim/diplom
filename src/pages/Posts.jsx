@@ -25,6 +25,10 @@ function Posts() {
 			paginate.step(1);
 		}, [paginate]); */
 
+		useEffect(() => {
+			document.title = 'Посты TravelBlog';
+		  }, []);
+
 	return (
 		<Container>
 			<Row className="mb-2"><Pagination hk={paginate} setSort={setSort} /></Row>
