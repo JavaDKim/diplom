@@ -25,8 +25,8 @@ function Main() {
 				<h3 className='mt-5'>Популярное</h3>
 			</Form>
 			<Row className='justify-content-beetwen m-0 p-0 mt-3'>
-				<Col xs={12} md={6} className='justify-content-center mt-2'> <PostPopular img={"popular1.png"} /> </Col>
-				<Col xs={12} md={6} className='justify-content-center mt-2'><PostPopular img={"popular2.png"} /></Col>
+				<Col xs={12} md={6} className='justify-content-center mt-2'> <PostPopular img={"popular1.png"} element={7} /> </Col>
+				<Col xs={12} md={6} className='justify-content-center mt-2'><PostPopular img={"popular2.png"} element={8} /></Col>
 			</Row>
 		</Row>
 		<Form className='d-flex justify-content-center'>

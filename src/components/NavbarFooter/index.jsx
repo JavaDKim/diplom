@@ -1,6 +1,6 @@
 import "./style.css"
-import { useContext, useEffect, useState } from "react";
-import { Button, Container, Form, Nav, Navbar, NavDropdown, Offcanvas, Row } from 'react-bootstrap';
+import { useContext } from "react";
+import { Container, Nav, Navbar, Offcanvas, Row } from 'react-bootstrap';
 import AppCtx from "../../context"
 import { useNavigate } from "react-router-dom";
 // икноки из библиотеки mui //
@@ -8,12 +8,12 @@ import PostAddIcon from '@mui/icons-material/PostAdd';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
-
 function NavbarMenu() {
 	const {
 		userId,
 	} = useContext(AppCtx);
 	const navigate = useNavigate()
+
 
 	const postsFavor = (e) => {
 		e.preventDefault()
