@@ -1,4 +1,4 @@
-import { Row, Col, Form } from 'react-bootstrap';
+import { Row, Col, Form, Container } from 'react-bootstrap';
 import { useContext, useEffect } from "react";
 import AppCtx from "../context";
 
@@ -7,7 +7,8 @@ import PostNew from '../components/PostNew';
 import NavbarFilter from '../components/NavbarFilter';
 import Header from '../components/Header';
 import NavbarFooter from '../components/NavbarFooter'
-
+import { popularArray } from '../assets/mainPosts';
+import { newArray } from '../assets/mainPosts';
 
 
 function Main() {
@@ -24,23 +25,15 @@ function Main() {
 			<Form className='d-flex justify-content-center'>
 				<h3 className='mt-5'>Популярное</h3>
 			</Form>
-			<Row className='justify-content-beetwen m-0 p-0 mt-3'>
-				<Col xs={12} md={6} className='justify-content-center mt-2'> <PostPopular img={"popular1.png"} element={7} /> </Col>
-				<Col xs={12} md={6} className='justify-content-center mt-2'><PostPopular img={"popular2.png"} element={8} /></Col>
+			<Row className='justify-content-beetwen m-0 p-0 mt-3'/* style={{ display: "grid", gridTemplateColumns: `1fr 1fr`, columnGap: "10px" }} */>
+				{popularArray.map(e => { return <PostPopular key={e.id} {...e} /> })}
 			</Row>
 		</Row>
 		<Form className='d-flex justify-content-center'>
 			<h3 className='mt-5'>Новые публикации</h3>
 		</Form>
 		<Row className='justify-content-beetwen m-0 p-0'>
-			<Col xs={12} md={4} className='justify-content-center mt-3'><PostNew img={"post1.png"} element={1} /> </Col>
-			<Col xs={12} md={4} className='justify-content-center mt-3'><PostNew img={"post2.png"} element={2} /></Col>
-			<Col xs={12} md={4} className='justify-content-center mt-3'><PostNew img={"post3.png"} element={3} /></Col>
-		</Row>
-		<Row className='justify-content-beetwen m-0 p-0'>
-			<Col xs={12} md={4} className='justify-content-center mt-3'><PostNew img={"post4.png"} element={4} /> </Col>
-			<Col xs={12} md={4} className='justify-content-center mt-3'><PostNew img={"post5.png"} element={5} /></Col>
-			<Col xs={12} md={4} className='justify-content-center mt-3'><PostNew img={"post6.png"} element={6} /></Col>
+			{newArray.map(e => { return <PostNew key={e.id} {...e} /> })}
 		</Row>
 		<Row className='justify-content-center m-0 p-0 mt-3'>
 			<NavbarFooter />
