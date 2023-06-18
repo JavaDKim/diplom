@@ -20,14 +20,15 @@ function Posts() {
 
 	} = useContext(AppCtx);
 	const [sort, setSort] = useState(true)
+
 	let paginate = usePagination(postsSrv, 20)
 	/* 	useEffect(() => {
 			paginate.step(1);
 		}, [paginate]); */
 
-		useEffect(() => {
-			document.title = 'Посты TravelBlog';
-		  }, []);
+	useEffect(() => {
+		document.title = 'Посты TravelBlog';
+	}, []);
 
 	return (
 		<Container>

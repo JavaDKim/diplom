@@ -44,7 +44,7 @@ function App() {
 						localStorage.setItem("travelPostsAll",JSON.stringify(true))
 					}
 					else{
-						setPostsSrv(data.filter(elx=>elx.tags?.includes("DiplomLk12")));
+						setPostsSrv(data?.filter(elx=>elx.tags?.includes("DiplomLk12")));
 						localStorage.setItem("travelPostsAll",JSON.stringify(false))
 					}
 					console.log(data);

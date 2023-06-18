@@ -10,6 +10,7 @@ const Breadcrumbs = () => {
 
 	return (<>{ok && <Breadcrumb >
 		<Breadcrumb.Item className='breadItem' href="/" >Home</Breadcrumb.Item>
+		<Breadcrumb.Item className='breadItem' href="/posts" >Посты</Breadcrumb.Item>
 		{location.pathname.split('/').filter(crumb => crumb !== '').map(crumb => {
 			currentLink = `/${crumb}`
 			return <Breadcrumb.Item className='breadItem' active key={crumb} href={currentLink}>

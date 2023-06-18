@@ -196,8 +196,6 @@ function CurrentPost() {
 
 		{!userId && <Container>
 			<Row xs={12} md={6}>
-
-
 				<Auth />
 			</Row>
 		</Container>
