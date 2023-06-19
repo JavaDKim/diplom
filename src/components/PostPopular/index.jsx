@@ -1,6 +1,8 @@
 import Card from 'react-bootstrap/Card';
 
 function PostPopular({ img }) {
+
+	
 	return (
 		<Card className="bg-dark text-white">
 			<Card.Img src={require(`../../assets/images/${img}`)} alt="Card image" />
