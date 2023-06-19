@@ -3,7 +3,6 @@ import { Container, Row, Col, Image, Form, Button, Badge } from "react-bootstrap
 import { useNavigate, useParams } from "react-router-dom";
 import EditIcon from '@mui/icons-material/Edit';
 import AddIcon from '@mui/icons-material/Add';
-import Footer from "../components/Footer";
 
 //Стили//
 import './style.css';
@@ -17,6 +16,7 @@ import ModalUserEdit from "../components/Modal/ModalUserEdit";
 function Profile() {
 	const { id } = useParams();
 	const navigate = useNavigate()
+
 	const {
 		token,
 		api,
@@ -36,7 +36,7 @@ function Profile() {
 					setMyPostsSrv(postsSrv?.filter(el => el.author._id.includes(id)))
 				}
 			})
-	}, [postsSrv]);
+	}, [postsSrv, id, api, setMyPostsSrv]);
 
 	const [name, setName] = useState("")
 	const [about, setAbout] = useState("")
@@ -51,7 +51,7 @@ function Profile() {
 
 	useEffect(() => {
 		document.title = "Профиль " + name;
-	  }, [name]);
+	}, [name]);
 
 	return <>
 		<Container>
