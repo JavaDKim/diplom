@@ -12,7 +12,7 @@ function PostNew({ img, title, text, data, id }) {
 	}
 	return (
 		<Col xs={12} md={4} className='justify-content-center mt-3'>
-			<Card onClick={go}>
+			<Card onClick={go} style={{ cursor: "pointer" }}>
 				<Card.Img variant="top" src={require(`../../assets/images/${img}`)} />
 				<Card.ImgOverlay>
 				</Card.ImgOverlay>

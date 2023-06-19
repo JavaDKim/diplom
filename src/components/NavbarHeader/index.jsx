@@ -96,7 +96,7 @@ function NavbarMenu() {
 											</NavDropdown.Item>
 										</NavDropdown>
 									</Nav>
-									<Form size="sm" className="frmSearch">
+									<Form size="sm" className="frmSearch" >
 										<Form.Control
 											style={{ height: "25px" }}
 											className="w-175"
@@ -105,7 +105,8 @@ function NavbarMenu() {
 											value={textSearch || ""}
 											placeholder="поиск"
 											aria-label="Search"
-											onChange={(e) => { setTextSearch(e.currentTarget.value) }}
+											onChange={(e) => { e.preventDefault(); setTextSearch(e.currentTarget.value) }}
+
 										/>
 										<Button className="btnSearch" onClick={search}>
 											<SearchRoundedIcon style={{ fontSize: "20px" }} />
