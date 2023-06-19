@@ -17,7 +17,7 @@ function PostNew({ img, title, text, data, id }) {
 				<Card.ImgOverlay>
 				</Card.ImgOverlay>
 				<Card.Body>
-					<Card.Text style={{ fontSize: "14px" }}>{title + ". " + text.slice(0, 121) + " ...."}</Card.Text>
+					<Card.Text style={{ fontSize: "14px", cursor: "pointer"}}>{title + ". " + text.slice(0, 121) + " ...."}</Card.Text>
 				</Card.Body>
 			</Card>
 		</Col>

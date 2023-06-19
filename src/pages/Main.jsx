@@ -25,14 +25,14 @@ function Main() {
 			<Form className='d-flex justify-content-center'>
 				<h3 className='mt-5'>Популярное</h3>
 			</Form>
-			<Row className='justify-content-beetwen m-0 p-0 mt-3' style={{ cursor: "pointer"}}>
+			<Row className='justify-content-beetwen m-0 p-0 mt-3'>
 				{popularArray.map(e => { return <PostPopular key={e.id} {...e} /> })}
 			</Row>
 		</Row>
 		<Form className='d-flex justify-content-center'>
 			<h3 className='mt-5'>Новые публикации</h3>
 		</Form>
-		<Row className='justify-content-beetwen m-0 p-0' style={{ cursor: "pointer"}}>
+		<Row className='justify-content-beetwen m-0 p-0'>
 			{newArray.map(e => { return <PostNew key={e.id} {...e} /> })}
 		</Row>
 		<Row className='justify-content-center m-0 p-0 mt-3'>

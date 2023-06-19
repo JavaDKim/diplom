@@ -12,7 +12,7 @@ function PostPopular({ img, title, text, data, id }) {
 
 	return (
 		<Col xs={12} md={6} className='justify-content-center mt-2'>
-			<Card className="bg-dark text-white" style={{ padding: "0", border: "0px", position: "relative" }}>
+			<Card className="bg-dark text-white" style={{ padding: "0", border: "0px", position: "relative", cursor: "pointer" }}>
 				<Card.Img onClick={go} src={require(`../../assets/images/${img}`)} alt="популярное" />
 				<Card.ImgOverlay onClick={go}>
 					<Card.Title>{title}</Card.Title>
