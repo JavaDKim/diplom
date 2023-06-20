@@ -13,7 +13,7 @@ import NavbarMenu from "./components/NavbarHeader";
 //импортируем routes
 import RoutesBlog from "./routes";
 import allCountry from "./country.js";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import PageNotFound from "./pages/404/PageNotFound";
 
 function App() {
@@ -33,6 +33,7 @@ function App() {
   const [postsSrvAll, setPostsSrvAll] = useState(
     JSON.parse(localStorage.getItem("travelPostsAll"))
   ); // показывать все посты или только с тегом "DiplomLk12"
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     setApi(new Api(token));
@@ -56,6 +57,8 @@ function App() {
       console.log("нет токена");
     }
   }, [api.token, postsSrvAll]);
+
+  const location = useLocation();
 
   return (
     <>
@@ -83,19 +86,25 @@ function App() {
             setTextSearch,
           }}
         >
-          <Row className="justify-content-center">
-            <NavbarMenu />
-          </Row>
-
+          {!visible && (
+            <Row className="justify-content-center">
+              <NavbarMenu />
+            </Row>
+          )}
           <Row>
-            <RoutesBlog />
+            <Routes>
+              <Route
+                path="/"
+                element={<RoutesBlog setVisible={setVisible} />}
+              />
+              <Route
+                path="*"
+                element={<PageNotFound setVisible={setVisible} />}
+              />
+            </Routes>
           </Row>
         </AppCtx.Provider>
       </Container>
-
-      <Routes>
-        <Route path="*" element={<PageNotFound />} />
-      </Routes>
     </>
   );
 }
