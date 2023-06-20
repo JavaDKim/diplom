@@ -1,6 +1,5 @@
-import { Row, Col, Form, Container } from 'react-bootstrap';
-import { useContext, useEffect } from "react";
-import AppCtx from "../context";
+import { Row, Form } from 'react-bootstrap';
+import { useEffect } from "react";
 
 import PostPopular from '../components/PostPopular';
 import PostNew from '../components/PostNew';
@@ -23,14 +22,14 @@ function Main() {
 			<Row className='d-flex justify-content-center m-0 p-0' ><Header /></Row>
 			<Row className='d-flex justify-content-center m-0 p-0 mt-2'><NavbarFilter /></Row>
 			<Form className='d-flex justify-content-center'>
-				<h3 className='mt-5'>Популярное</h3>
+				<h3 className='mt-2'>Популярное</h3>
 			</Form>
-			<Row className='justify-content-beetwen m-0 p-0 mt-3'/* style={{ display: "grid", gridTemplateColumns: `1fr 1fr`, columnGap: "10px" }} */>
+			<Row className='justify-content-beetwen m-0 p-0 mt-2'/* style={{ display: "grid", gridTemplateColumns: `1fr 1fr`, columnGap: "10px" }} */>
 				{popularArray.map(e => { return <PostPopular key={e.id} {...e} /> })}
 			</Row>
 		</Row>
 		<Form className='d-flex justify-content-center'>
-			<h3 className='mt-5'>Новые публикации</h3>
+			<h3 className='mt-3'>Новые публикации</h3>
 		</Form>
 		<Row className='justify-content-beetwen m-0 p-0'>
 			{newArray.map(e => { return <PostNew key={e.id} {...e} /> })}
