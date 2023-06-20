@@ -1,4 +1,4 @@
-+import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import AppCtx from "../context"
 import VertCard from "../components/CardPost/VertCard";
 import { Container } from "react-bootstrap";

@@ -54,7 +54,7 @@ function NavbarMenu() {
 			{['lg'].map((expand) => (
 				<Navbar key={expand} bg="opacity-100" expand={expand} className="mb-3">
 					<Container fluid>
-						<Navbar.Brand><Nav.Link className="link_header" href="/" title="на главную">	<img width={200} src={require('../../assets/images/logo.png')} />	</Nav.Link></Navbar.Brand>
+						<Navbar.Brand className="link_header" onClick={e => { e.preventDefault(); navigate("/") }}><img width={200} src={require('../../assets/images/logo.png')} /></Navbar.Brand>
 						<Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
 						<Navbar.Offcanvas
 
@@ -96,7 +96,7 @@ function NavbarMenu() {
 											</NavDropdown.Item>
 										</NavDropdown>
 									</Nav>
-									<Form size="sm" className="frmSearch">
+									<Form size="sm" className="frmSearch" >
 										<Form.Control
 											style={{ height: "25px" }}
 											className="w-175"
@@ -105,7 +105,8 @@ function NavbarMenu() {
 											value={textSearch || ""}
 											placeholder="поиск"
 											aria-label="Search"
-											onChange={(e) => { setTextSearch(e.currentTarget.value) }}
+											onChange={(e) => { e.preventDefault(); setTextSearch(e.currentTarget.value) }}
+
 										/>
 										<Button className="btnSearch" onClick={search}>
 											<SearchRoundedIcon style={{ fontSize: "20px" }} />

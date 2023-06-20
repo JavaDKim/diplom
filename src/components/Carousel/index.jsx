@@ -12,7 +12,7 @@ function ControlledCarousel() {
 
 	return (
 		<Carousel activeIndex={index} onSelect={handleSelect} className='carousel'>
-			{carouselArray?.map(e => <Carousel.Item>
+			{carouselArray?.map(e => <Carousel.Item key={e.id}>
 				<img
 					className="d-block w-100"
 					src={require(`../../assets/images/${e.img}`)}
