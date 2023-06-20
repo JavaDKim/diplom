@@ -8,6 +8,8 @@ import PostAddIcon from '@mui/icons-material/PostAdd';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
+
+
 function NavbarMenu() {
 	const {
 		userId,
@@ -46,6 +48,7 @@ function NavbarMenu() {
 										<Nav.Link className="link_header" title="добавить пост" onClick={e => { e.preventDefault(); navigate("/post/add") }}>	<PostAddIcon style={{ color: "gray" }} /> Добавить</Nav.Link>
 										<Nav.Link className="link_header" title="посты пользователей" onClick={e => { e.preventDefault(); navigate("/posts") }}>	<DynamicFeedIcon style={{ color: "gray" }} /> Посты</Nav.Link>
 										<Nav.Link className="link_header" title="избранное" onClick={postsFavor}>	<FavoriteIcon style={{ color: "gray" }} /> Избранное</Nav.Link>
+
 									</Nav>
 								</>}
 							</Offcanvas.Body>

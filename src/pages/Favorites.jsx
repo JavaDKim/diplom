@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
++import { useEffect, useState, useContext } from "react";
 import AppCtx from "../context"
 import VertCard from "../components/CardPost/VertCard";
 import { Container } from "react-bootstrap";
@@ -8,7 +8,7 @@ const Favorites = () => {
 
 	useEffect(() => {
 		document.title = 'Избранные посты TravelBlog';
-	  }, []);
+	}, []);
 
 	const { userId, postsSrv } = useContext(AppCtx)
 	return (
