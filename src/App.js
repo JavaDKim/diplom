@@ -13,6 +13,8 @@ import NavbarMenu from "./components/NavbarHeader";
 //импортируем routes
 import RoutesBlog from "./routes";
 import allCountry from "./country.js";
+import { Routes, Route } from "react-router-dom";
+import PageNotFound from "./pages/404/PageNotFound";
 
 function App() {
   const [user, setUser] = useState(localStorage.getItem("travelBlogUser"));
@@ -56,38 +58,45 @@ function App() {
   }, [api.token, postsSrvAll]);
 
   return (
-    <Container className="container_body">
-      <AppCtx.Provider
-        value={{
-          token,
-          setToken,
-          api,
-          country,
-          setUser,
-          userId,
-          setUserId,
-          userInfoObj,
-          setUserInfoObj,
-          elPost,
-          setElPost,
-          postsSrv,
-          setPostsSrv,
-          postsSrvAll,
-          setPostsSrvAll,
-          myPostsSrv,
-          setMyPostsSrv,
-          textSearch,
-          setTextSearch,
-        }}
-      >
-        <Row className="justify-content-center">
-          <NavbarMenu />
-        </Row>
-        <Row>
-          <RoutesBlog />
-        </Row>
-      </AppCtx.Provider>
-    </Container>
+    <>
+      <Container className="container_body">
+        <AppCtx.Provider
+          value={{
+            token,
+            setToken,
+            api,
+            country,
+            setUser,
+            userId,
+            setUserId,
+            userInfoObj,
+            setUserInfoObj,
+            elPost,
+            setElPost,
+            postsSrv,
+            setPostsSrv,
+            postsSrvAll,
+            setPostsSrvAll,
+            myPostsSrv,
+            setMyPostsSrv,
+            textSearch,
+            setTextSearch,
+          }}
+        >
+          <Row className="justify-content-center">
+            <NavbarMenu />
+          </Row>
+
+          <Row>
+            <RoutesBlog />
+          </Row>
+        </AppCtx.Provider>
+      </Container>
+
+      <Routes>
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
+    </>
   );
 }
 

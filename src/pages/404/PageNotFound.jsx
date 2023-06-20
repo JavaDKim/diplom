@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react';
 import './Page404.css';
 import { Button } from "react-bootstrap"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
-const Page404 = () => {
+
+const PageNotFound = () => {
+
+	const navigate = useNavigate();
 
 	function redirectToHome() {
-		window.location.href = "/";
+		navigate("/");
 	}
 	useEffect(() => {
 		const animate = () => {
@@ -73,4 +76,4 @@ const Page404 = () => {
 	);
 }
 
-export default Page404;
+export default PageNotFound;
