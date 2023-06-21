@@ -12,6 +12,7 @@ import EditPost from "./pages/EditPost"
 import Setting from "./pages/Setting"
 import Favorites from "./pages/Favorites"
 import Search from "./pages/Search"
+import PageNotFound from "./pages/404/PageNotFound"
 
 const RoutesBlog = () => {
 	return (

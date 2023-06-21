@@ -8,7 +8,7 @@ const Favorites = () => {
 
 	useEffect(() => {
 		document.title = 'Избранные посты TravelBlog';
-	  }, []);
+	}, []);
 
 	const { userId, postsSrv } = useContext(AppCtx)
 	return (
