@@ -28,6 +28,7 @@ const RoutesBlog = () => {
 				<Route path="/auth" element={<Auth />} />
 				<Route path="/favorites" element={<Favorites />} />
 				<Route path="/search" element={<Search />} />
+				<Route path="*" element={<PageNotFound />} />
 			</Routes>
 		</main >
 	);

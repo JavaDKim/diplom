@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import './Page404.css';
 import { Button } from "react-bootstrap"
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -70,7 +70,7 @@ const PageNotFound = () => {
 					На главную
 				</Button>
 				{/* <button onclick="redirectToHome()">На главную</button> */}
-				<img src="http://www.supah.it/dribbble/008/008.jpg" alt="Background" />
+				<img className="image" src="http://www.supah.it/dribbble/008/008.jpg" alt="Background" />
 			</div>
 		</div>
 	);

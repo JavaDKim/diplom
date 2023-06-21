@@ -33,7 +33,7 @@ function App() {
   const [postsSrvAll, setPostsSrvAll] = useState(
     JSON.parse(localStorage.getItem("travelPostsAll"))
   ); // показывать все посты или только с тегом "DiplomLk12"
-  const [visible, setVisible] = useState(false);
+  
 
   useEffect(() => {
     setApi(new Api(token));
@@ -86,23 +86,12 @@ function App() {
             setTextSearch,
           }}
         >
-          {!visible && (
-            <Row className="justify-content-center">
-              <NavbarMenu />
-            </Row>
-          )}
-          <Row>
-            <Routes>
-              <Route
-                path="/"
-                element={<RoutesBlog setVisible={setVisible} />}
-              />
-              <Route
-                path="*"
-                element={<PageNotFound setVisible={setVisible} />}
-              />
-            </Routes>
-          </Row>
+        <Row className="justify-content-center">
+          <NavbarMenu />
+        </Row>
+        <Row>
+					<RoutesBlog/>
+        </Row>
         </AppCtx.Provider>
       </Container>
     </>
